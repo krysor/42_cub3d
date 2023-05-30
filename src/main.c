@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/05/30 14:34:57 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:35:24 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int	main(int argc, char *argv[])
 		printf("Error\nInvalid number of arguments\n");
 		return (1);
 	}
-	vars.grid = ft_map_to_grid(argv[1], vars.grid);
+	(void)argv;
+	vars.grid = NULL;
+	//vars.grid = ft_map_to_grid(argv[1], vars.grid);
 	ft_init_vars(&vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
