@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:24:04 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/17 10:41:07 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:29:21 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 static t_point	*ft_next_same_z_vertical(t_data *data,
 					t_point *prev, t_point *next);

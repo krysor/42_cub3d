@@ -6,28 +6,16 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/17 10:11:43 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:30:15 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 int	ft_key_hook(int keycode, t_data *vars)
 {
-	if (keycode == ESC)
+	if (keycode == KEY_ESC)
 		mlx_destroy_window(vars->mlx, vars->win);
-	else if (keycode == KEY_F)
-	{
-		vars->alpha = 0;
-		vars->beta = 0;
-		vars->gamma = M_PI / 4;
-	}
-	else if (keycode == KEY_I)
-	{
-		vars->alpha = asin(tan(M_PI / 6)) - M_PI / 2;
-		vars->beta = 0;
-		vars->gamma = 0;
-	}
 	return (0);
 }
 

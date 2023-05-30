@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 16:01:02 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/16 12:16:43 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:29:33 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 static t_point	**ft_fd_to_grid(int fd, t_point **grid);
 static void		ft_exit(t_point **grid, char *err_msg);

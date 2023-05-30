@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:14:53 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/16 12:32:01 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:29:18 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 static t_point	**ft_set_y(t_point **grid);
 static int		ft_get_z_middle(t_point	*point);
