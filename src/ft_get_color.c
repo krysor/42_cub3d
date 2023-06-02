@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:00:58 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/17 10:40:35 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:29:24 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 static int	ft_get_t(int trgb);
 static int	ft_get_r(int trgb);

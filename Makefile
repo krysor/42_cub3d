@@ -15,12 +15,12 @@ SRCS 	= $(addprefix src/, ${CFILES})
 
 OBJS	= ${SRCS:.c=.o}
 
-NAME	= fdf
+NAME	= cub3D
 
 CC		= cc
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -O3
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
 
 ${NAME}:	${OBJS}
 			${MAKE} -C libft

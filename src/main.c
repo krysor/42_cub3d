@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/17 11:03:53 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:35:24 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 static void	ft_init_vars(t_data *data);
 
@@ -20,13 +20,15 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		perror("Please provide exactly one map");
+		printf("Error\nInvalid number of arguments\n");
 		return (1);
-	}	
-	vars.grid = ft_map_to_grid(argv[1], vars.grid);
+	}
+	(void)argv;
+	vars.grid = NULL;
+	//vars.grid = ft_map_to_grid(argv[1], vars.grid);
 	ft_init_vars(&vars);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "fdf");
+	vars.win = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	vars.img1 = mlx_new_image(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	vars.img2 = mlx_new_image(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	mlx_key_hook(vars.win, ft_key_hook, &vars);

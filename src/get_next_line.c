@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 11:19:00 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/01/23 14:38:30 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:29:40 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 static char	*ft_gnl_nl(char *buffer);
 static char	*ft_gnl_no_nl(char *buffer, int fd);

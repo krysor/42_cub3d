@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:59:22 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/16 12:49:01 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:29:14 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 static int	ft_nbhex(char *s);
 static int	ft_ishex(char chr);

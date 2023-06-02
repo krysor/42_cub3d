@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/17 10:39:28 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:35:52 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "../libft/libft.h"
 # include <fcntl.h>
@@ -20,97 +20,31 @@
 # include <math.h>
 # include <stdio.h>
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2000
-# endif
+//buffer size inside the get_next_line function
+# define BUFFER_SIZE	2000
 
-# ifndef WHITE
-#  define WHITE 0xffffff
-# endif
+//colors in hexadecimal
+# define WHITE			0xffffff
+# define BLACK			0x0
 
-# ifndef BLACK
-#  define BLACK 0x0
-# endif
+//window size
+# define WINDOW_WIDTH 	1280
+# define WINDOW_HEIGHT	720
 
-# ifndef WINDOW_WIDTH
-#  define WINDOW_WIDTH 1280
-# endif
+//keycode values on macOS
+# define ARROW_LEFT		123
+# define ARROW_RIGHT	124
 
-# ifndef WINDOW_HEIGHT
-#  define WINDOW_HEIGHT 720
-# endif
+# define KEY_W 			13
+# define KEY_A			0
+# define KEY_S			1
+# define KEY_D 			2
+# define KEY_ESC		53
 
-# ifndef ARROW_LEFT
-#  define ARROW_LEFT 123
-# endif
-
-# ifndef ARROW_RIGHT
-#  define ARROW_RIGHT 124
-# endif
-
-# ifndef ARROW_UP
-#  define ARROW_UP 125
-# endif
-
-# ifndef ARROW_DOWN
-#  define ARROW_DOWN 126
-# endif
-
-# ifndef KEY_MINUS
-#  define KEY_MINUS 78
-# endif
-
-# ifndef KEY_PLUS
-#  define KEY_PLUS 69
-# endif
-
-# ifndef ESC
-#  define ESC 53
-# endif
-
-# ifndef KEY_A
-#  define KEY_A 0
-# endif
-
-# ifndef KEY_S
-#  define KEY_S 1
-# endif
-
-# ifndef KEY_D
-#  define KEY_D 2
-# endif
-
-# ifndef KEY_Q
-#  define KEY_Q 12
-# endif
-
-# ifndef KEY_W
-#  define KEY_W 13
-# endif
-
-# ifndef KEY_E
-#  define KEY_E 14
-# endif
-
-# ifndef KEY_I
-#  define KEY_I 34
-# endif
-
-# ifndef KEY_F
-#  define KEY_F 3
-# endif
-
-# ifndef ON_KEYDOWN
-#  define ON_KEYDOWN 2
-# endif
-
-# ifndef ON_DESTROY
-#  define ON_DESTROY 17
-# endif
-
-# ifndef NO_EVENT_MASK
-#  define NO_EVENT_MASK 0L
-# endif
+//mlx keyhook event macros
+# define ON_KEYDOWN		2
+# define ON_DESTROY		17
+# define NO_EVENT_MASK	0L
 
 typedef struct s_point
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_grid.c                                          :+:      :+:    :+:   */
+/*   ft_grid_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 11:45:33 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/02/16 13:52:42 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/05/30 14:29:28 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "cub3D.h"
 
 void	ft_gridadd_right(t_point **grid, t_point *new,
 			t_point **last_right, t_point **last_down)
