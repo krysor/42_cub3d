@@ -15,7 +15,7 @@
 //static void	ft_flush_window(t_data *data);
 //static void	ft_draw_grid(t_data *data);
 
-int	ft_render_frame(t_data *data)
+int	render_frame(t_data *data)
 {
 	if (data->i_img == 0)
 	{

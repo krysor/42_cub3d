@@ -12,21 +12,29 @@
 
 #include "cub3D.h"
 
-int	ft_key_hook(int keycode, t_data *vars)
+void	init_hooks(t_data *vars)
+{
+	mlx_key_hook(vars->win, key_hook, vars);
+	mlx_hook(vars->win, ON_DESTROY, NO_EVENT_MASK, red_cross, vars);
+	mlx_hook(vars->win, ON_KEYDOWN, NO_EVENT_MASK, key_down, vars);
+	mlx_loop_hook(vars->mlx, render_frame, vars);
+}
+
+int	key_hook(int keycode, t_data *vars)
 {
 	if (keycode == KEY_ESC)
 		mlx_destroy_window(vars->mlx, vars->win);
 	return (0);
 }
 
-int	ft_red_cross(t_data *vars)
+int	red_cross(t_data *vars)
 {
-	ft_free_all(vars);
+	free_all(vars);
 	exit(0);
 	return (0);
 }
 
-int	ft_key_down(int keycode, t_data *vars)
+int	key_down(int keycode, t_data *vars)
 {
 	if (keycode == ARROW_LEFT)
 		vars->x_mid -= 5;

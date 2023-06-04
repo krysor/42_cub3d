@@ -16,7 +16,7 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
-# include <mlx.h>
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 
@@ -46,20 +46,8 @@
 # define ON_DESTROY		17
 # define NO_EVENT_MASK	0L
 
-typedef struct s_point
-{
-	int				x;
-	int				y;
-	int				z;
-	unsigned int	color;
-	struct s_point	*next_right;
-	struct s_point	*next_down;
-}					t_point;
-
 typedef struct s_data
 {
-	t_point	**grid;
-
 	double	alpha;
 	double	beta;
 	double	gamma;
@@ -77,41 +65,17 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-
-	int		pixels_total;
-	int		pixels_left;
 }					t_data;
 
-void		ft_free_all(t_data *vars);
+void		init_hooks(t_data *vars);
+int			key_hook(int keycode, t_data *vars);
+int			key_down(int keycode, t_data *vars);
+int			red_cross(t_data *vars);
 
-t_point		**ft_map_to_grid(char *map, t_point **grid);
-char		*get_next_line(int fd);
-void		ft_free_arr(char **arr);
-long int	ft_atoli(const char *nptr);
-long int	ft_hatoli(char *str);
-void		ft_center_axes(t_point **grid);
+void		free_arr(char **arr);
+void		free_all(t_data *vars);
 
-void		ft_gridadd_right(t_point **grid, t_point *new,
-				t_point **last_right, t_point **last_down);
-void		ft_gridadd_down(t_point **grid, t_point *new,
-				t_point **last_right, t_point **last_down);
-int			ft_gridsize_horizontal(t_point *point);
-int			ft_gridsize_vertical(t_point *point);
-void		ft_free_grid(t_point **grid);
-
-t_point		*ft_pointnew(char *str, int x);
-void		ft_copy_point(t_point *src, t_point *dst);
-void		ft_scale_point(t_point *p, double factor);
-void		ft_rotate_point(t_point *p, double a, double b, double g);
-
-int			ft_render_frame(t_data *data);
-void		ft_connect_alined_horizontal(t_data *data, t_point *p);
-void		ft_connect_alined_vertical(t_data *data, t_point *p);
-int			ft_get_color(t_data *data, t_point *p1, t_point *p2);
+int			render_frame(t_data *data);
 void		my_pixel_put(t_data *data, int x, int y, int color);
-
-int			ft_key_hook(int keycode, t_data *vars);
-int			ft_key_down(int keycode, t_data *vars);
-int			ft_red_cross(t_data *vars);
 
 #endif

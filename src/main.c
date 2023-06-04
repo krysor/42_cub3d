@@ -12,43 +12,39 @@
 
 #include "cub3D.h"
 
-static void	ft_init_vars(t_data *data);
+static void	init_vars(t_data *data);
 
 int	main(int argc, char *argv[])
 {
 	t_data	vars;
 
+	(void)argv;
 	if (argc != 2)
 	{
 		printf("Error\nInvalid number of arguments\n");
 		return (1);
 	}
-	(void)argv;
-	vars.grid = NULL;
-	//vars.grid = ft_map_to_grid(argv[1], vars.grid);
-	ft_init_vars(&vars);
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
-	vars.img1 = mlx_new_image(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	vars.img2 = mlx_new_image(vars.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	mlx_key_hook(vars.win, ft_key_hook, &vars);
-	mlx_hook(vars.win, ON_DESTROY, NO_EVENT_MASK, ft_red_cross, &vars);
-	mlx_hook(vars.win, ON_KEYDOWN, NO_EVENT_MASK, ft_key_down, &vars);
-	mlx_loop_hook(vars.mlx, ft_render_frame, &vars);
+	init_vars(&vars);
+	init_hooks(&vars);
 	mlx_loop(vars.mlx);
-	ft_free_all(&vars);
+	free_all(&vars);
 	return (0);
 }
 
-static void	ft_init_vars(t_data *data)
+static void	init_vars(t_data *data)
 {
-	data->alpha = asin(tan(M_PI / 6)) - M_PI / 2;
+	data->alpha = 0;
 	data->beta = 0;
 	data->gamma = 0;
 	data->scale = 1;
 	data->x_mid = WINDOW_WIDTH / 2;
 	data->y_mid = WINDOW_HEIGHT / 2;
 	data->i_img = 0;
+
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+	data->img1 = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->img2 = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
 void	my_pixel_put(t_data *data, int x, int y, int color)
@@ -59,23 +55,4 @@ void	my_pixel_put(t_data *data, int x, int y, int color)
 		return ;
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	ft_free_arr(char **arr)
-{
-	int	i;
-
-	if (!arr)
-		return ;
-	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
-}
-
-void	ft_free_all(t_data *vars)
-{
-	ft_free_grid(vars->grid);
-	free(vars->img1);
-	free(vars->img2);
 }

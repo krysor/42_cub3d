@@ -1,15 +1,9 @@
 CFILES	= 	\
 			main.c \
-			ft_map_to_grid.c \
-			ft_center_axes.c \
-			get_next_line.c \
-			ft_atoi.c \
-			ft_point_utils.c \
-			ft_grid_utils.c \
-			ft_render_frame.c \
-			ft_connect_points.c \
-			ft_get_color.c \
-			ft_hooks.c \
+			hooks.c \
+			utils_free.c \
+			render_frame.c \
+			get_color.c
 			
 SRCS 	= $(addprefix src/, ${CFILES})
 
