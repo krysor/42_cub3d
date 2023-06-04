@@ -15,12 +15,15 @@ CC		= cc
 RM		= rm -f
 
 CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
+MFLAGS	= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 ${NAME}:	${OBJS}
 			${MAKE} -C libft
-			${MAKE} -C mlx
-			cp mlx/libmlx.dylib .
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} libft/libft.a libmlx.dylib
+			${MAKE} -C mlx_linux
+			${CC} ${CFLAGS} ${MFLAGS} -o ${NAME} ${OBJS} libft/libft.a
 
 all:		${NAME}
 

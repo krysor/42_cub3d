@@ -16,7 +16,7 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <limits.h>
-# include "../mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 # include <math.h>
 # include <stdio.h>
 
