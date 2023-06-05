@@ -1,42 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsoroko <dsoroko@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 10:21:55 by dsoroko           #+#    #+#             */
+/*   Created: 2022/04/13 19:30:26 by dsoroko           #+#    #+#             */
 /*   Updated: 2022/04/27 18:33:29 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	size_t	i;
+	char	*b_ret;
 
-	if (n == 0 || dst == src)
-		return (dst);
-	i = 0;
-	while (i < n)
+	b_ret = (char *)b;
+	while (len > 0)
 	{
-		((char *)dst)[i] = ((char *)src)[i];
-		i++;
+		*b_ret = c;
+		b_ret++;
+		len--;
 	}
-	return (dst);
+	return (b);
 }
 
 // #include <stdio.h>
-// #include <strings.h>
+// #include <strings.h> 
 // int main()
 // {
-// 	char dst[100] = "Here is dst";
-// 	char src[100] = "Here is src";
+// 	char str[100] = "0123456789";
+// 	char str2[100] = "0123456789";
 
-// 	ft_memcpy(dst, src, sizeof(src));
-// 	printf("dst after ft_memcpy(): %s\n", dst);
-// 	memcpy(dst, src, sizeof(src));
-// 	printf("dst after memcpy(): %s\n", dst);
+// 	ft_memset(str, '.', 3);
+// 	memset(str2, '.', 3);
+// 	printf("After ft_memset(): %s\n", str);
+// 	printf("After memset(): %s\n", str2);
 // 	return 0;
 // }
+
+//Функция memset заполняет первые len байт области памяти, 
+//на которую указывает аргумент b, 
+//символом, код которого указывается аргументом c.

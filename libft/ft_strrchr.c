@@ -1,39 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/13 17:44:41 by dsoroko           #+#    #+#             */
-/*   Updated: 2022/10/24 15:18:39 by dsoroko          ###   ########.fr       */
+/*   Created: 2022/04/19 11:01:39 by dsoroko           #+#    #+#             */
+/*   Updated: 2022/10/24 15:17:57 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char *s1)
+char	*ft_strrchr(char *s, int c)
 {
-	char	*str;
+	char	find;
 	int		i;
 
-	i = 0;
-	str = malloc(sizeof(char) * ft_strlen(s1) + 1);
-	if (!str)
-		return (0);
-	while (s1[i])
+	find = (unsigned int)c;
+	i = ft_strlen(s);
+	while (i > 0)
 	{
-		str[i] = s1[i];
-		i++;
+		if (s[i] == find)
+			return ((char *)s + i);
+		i--;
 	}
-	str[i] = '\0';
-	return (str);
+	if (s[i] == find)
+		return ((char *)s);
+	return (0);
 }
 
 // #include <stdio.h>
 // #include <string.h>
 // int main()
 // {
-// 	printf("%s\n", ft_strdup("Jambonfromagequiroulemal"));
-// 	printf("%s\n", strdup("Jambonfromagequiroulemal"));
+// 	const char str[] = "Here.is.the.string";
+// 	const char ch = 'H';
+// 	char *result;
+
+// 	result = ft_strrchr(str, ch);
+// 	printf("String after a character is %s\n", result);
+// 	result = strrchr(str, ch);
+// 	printf("String after a character is %s\n", result);
+// 	return (0);
 // }

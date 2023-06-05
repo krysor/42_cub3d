@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsoroko <dsoroko@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 10:21:55 by dsoroko           #+#    #+#             */
+/*   Created: 2022/04/13 18:35:53 by dsoroko           #+#    #+#             */
 /*   Updated: 2022/04/27 18:33:29 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
-
-	if (n == 0 || dst == src)
-		return (dst);
-	i = 0;
-	while (i < n)
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else if (n < 0)
 	{
-		((char *)dst)[i] = ((char *)src)[i];
-		i++;
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(-n, fd);
 	}
-	return (dst);
+	else if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + '0', fd);
+	}
+	else
+		ft_putchar_fd(n + '0', fd);
 }
 
-// #include <stdio.h>
-// #include <strings.h>
-// int main()
+// #include <limits.h>
+// int main ()
 // {
-// 	char dst[100] = "Here is dst";
-// 	char src[100] = "Here is src";
-
-// 	ft_memcpy(dst, src, sizeof(src));
-// 	printf("dst after ft_memcpy(): %s\n", dst);
-// 	memcpy(dst, src, sizeof(src));
-// 	printf("dst after memcpy(): %s\n", dst);
-// 	return 0;
+// 	ft_putnbr_fd(INT_MAX, 1);
+// 	ft_putchar_fd('\n', 1);
+// 	ft_putnbr_fd(INT_MIN, 1);
+// 	ft_putchar_fd('\n', 1);
+// 	ft_putnbr_fd(0, 1);
+// 	ft_putchar_fd('\n', 1);
 // }

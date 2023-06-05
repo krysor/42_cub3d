@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/12 18:58:47 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/03/15 22:34:00 by kkaczoro         ###   ########.fr       */
+/*   Created: 2022/04/19 11:03:25 by dsoroko           #+#    #+#             */
+/*   Updated: 2022/04/27 18:33:29 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,34 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t	i;
+	unsigned char	*s2;
 
-	i = 0;
-	while (i < n)
+	s2 = (unsigned char *)s;
+	while (n--)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return ((void *)(s + i));
-		i++;
+		if (*s2 == (unsigned char)c)
+			return ((void *)s2);
+		s2++;
 	}
 	return (0);
 }
+
+// #include <stdio.h>
+// #include <string.h>
+// int main()
+// {
+// 	const char str[] = "Here.is.String";
+// 	const char ch = '.';
+// 	const char ch2 = '/';
+// 	char *result;
+
+// 	result = ft_memchr(str, ch, 15);
+// 	printf("String after ft_memchr is: |%s|\n", result);
+// 	result = memchr(str, ch, 15);
+// 	printf("String after memchr is: |%s|\n", result);
+// 	result = ft_memchr(str, ch2, 15);
+// 	printf("String after ft_memchr is: |%s|\n", result);
+// 	result = memchr(str, ch2, 15);
+// 	printf("String after memchr is: |%s|\n", result);
+// 	return (0);
+// }

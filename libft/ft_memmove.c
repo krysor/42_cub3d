@@ -3,39 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 10:42:33 by kkaczoro          #+#    #+#             */
-/*   Updated: 2022/03/16 17:17:46 by kkaczoro         ###   ########.fr       */
+/*   Created: 2022/04/19 10:33:00 by dsoroko           #+#    #+#             */
+/*   Updated: 2022/04/27 18:33:29 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int		i;
-	char	*temp;
+	size_t			i;
+	unsigned char	*my_dest;
+	unsigned char	*my_src;
 
-	if (dest == NULL && src == NULL)
-		return (NULL);
+	my_dest = (unsigned char *)(dst);
+	my_src = (unsigned char *)(src);
 	i = 0;
-	temp = (char *)src;
-	if (src > dest)
+	if (!my_dest && !my_src)
+		return (0);
+	if (my_dest > my_src)
 	{
-		while (i < (int)n)
+		while (len > 0)
 		{
-			((char *)dest)[i] = temp[i];
-			i++;
-		}	
+			my_dest[len - 1] = my_src[len - 1];
+			len--;
+		}
 	}
-	else
+	while (i < len)
 	{
-		while (i < (int)n)
-		{
-			((char *)dest)[n - 1 - i] = temp[n - 1 - i];
-			i++;
-		}	
+		my_dest[i] = my_src[i];
+		i++;
 	}
-	return (dest);
+	return (my_dest);
 }
+
+// #include <stdio.h>
+// #include <string.h>
+// int main()
+// {
+// 	char dst[100] = "Hello";
+// 	char src[100] = "here is the string";
+// 	ft_memmove(dst, src + 3, 3);
+// 	ft_memmove(dst, dst + 3, 3);
+// 	printf("dst after ft_memmove: |%s|\n", dst);
+// 	memmove(dst, src + 3, 3);
+// 	printf("dst after memmove: |%s|\n", dst);
+// 	return 0;
+// }
