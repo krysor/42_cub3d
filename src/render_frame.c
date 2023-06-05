@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:07:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/05 11:11:04 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 13:31:38 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ static void	ft_flush_window(t_data *data);
 
 int	render_frame(t_data *data)
 {
-	if (data->i_img == 1)
+	if (data->img_next == 1)
 	{
 		data->addr = mlx_get_data_addr(data->img1, &data->bits_per_pixel,
 				&data->line_length, &data->endian);
 		ft_flush_window(data);
 		//ft_draw_grid(data);
 		mlx_put_image_to_window(data->mlx, data->win, data->img1, 0, 0);
-		data->i_img = 2;
+		data->img_next = 2;
 	}
 	else
 	{
@@ -32,7 +32,7 @@ int	render_frame(t_data *data)
 		ft_flush_window(data);
 		//ft_draw_grid(data);
 		mlx_put_image_to_window(data->mlx, data->win, data->img2, 0, 0);
-		data->i_img = 1;
+		data->img_next = 1;
 	}
 	return (0);
 }

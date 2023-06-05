@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/05 11:32:07 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:24:00 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int	red_cross(t_data *vars)
 
 int	key_down(int keycode, t_data *vars)
 {
-	if (keycode == ARROW_LEFT)
-		vars->player_x--;
-	else if (keycode == ARROW_RIGHT)
-		vars->player_x++;
-	else if (keycode == KEY_W)
-		vars->player_y -= M_PI * 5 / 180;
+	if (keycode == KEY_W)
+		move_straight(vars, 0.1);
 	else if (keycode == KEY_S)
-		vars->player_y += M_PI * 5 / 180;
+		move_straight(vars, -0.1);
 	else if (keycode == KEY_A)
-		vars->beta += M_PI * 5 / 180;
+		move_sideways(vars, 0.1);
 	else if (keycode == KEY_D)
-		vars->beta -= M_PI * 5 / 180;
+		move_sideways(vars, -0.1);
+	else if (keycode == ARROW_LEFT)
+		rotate(vars, M_PI / 18);
+	else if (keycode == ARROW_RIGHT)
+		rotate(vars, -M_PI / 18);
 	return (0);
 }

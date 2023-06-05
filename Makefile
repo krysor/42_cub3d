@@ -1,6 +1,7 @@
 CFILES	= 	\
 			main.c \
 			hooks.c \
+			move.c \
 			utils_free.c \
 			render_frame.c \
 			get_color.c

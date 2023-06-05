@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/05 11:26:17 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 13:31:13 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char *argv[])
 	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
-	vars.worldMap = &worldMap;
+	vars.world_map = &worldMap;
 
 	init_vars(&vars);
 	init_hooks(&vars);
@@ -68,17 +68,12 @@ static void	init_vars(t_data *data)
 	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	data->img1 = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->img2 = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data->i_img = 1;
+	data->img_next = 1;
 
 	data->player_x = 22;
 	data->player_y = 12;
 	data->direction_x = -1;
-	data->direciton_y = 0;
+	data->direction_y = 0;
 	data->plane_x = 0;
 	data->plane_y = 0.66;
-
-	data->alpha = 0;
-	data->beta = 0;
-	data->gamma = 0;
-	data->scale = 1;
 }

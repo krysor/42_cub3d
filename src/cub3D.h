@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/05 11:25:40 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:23:43 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_data
 	void	*win;
 	void	*img1;
 	void	*img2;
-	int		i_img;
+	int		img_next;
 
 	void	*world_map;
 	double	player_x;
@@ -80,6 +80,10 @@ void		init_hooks(t_data *vars);
 int			key_hook(int keycode, t_data *vars);
 int			key_down(int keycode, t_data *vars);
 int			red_cross(t_data *vars);
+
+void		move_straight(t_data *data, double fraction);
+void		move_sideways(t_data *data, double fraction);
+void		rotate(t_data *data, double angle);
 
 void		free_arr(char **arr);
 void		free_all(t_data *vars);
