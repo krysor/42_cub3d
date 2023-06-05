@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/05 14:23:43 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:24:32 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ typedef struct s_data
 	double	direction_y;
 	double	plane_x;
 	double	plane_y;
+
+	double	time;
+	double	time_old;
 }					t_data;
 
 void		init_hooks(t_data *vars);

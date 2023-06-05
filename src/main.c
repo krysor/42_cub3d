@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/05 13:31:13 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 15:24:44 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,7 @@ static void	init_vars(t_data *data)
 	data->direction_y = 0;
 	data->plane_x = 0;
 	data->plane_y = 0.66;
+
+	data->time = 0;
+	data->time_old = 0;
 }
