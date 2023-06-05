@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 11:58:32 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/05 15:35:44 by dsoroko          ###   ########.fr       */
+/*   Created: 2023/06/05 14:56:09 by dsoroko           #+#    #+#             */
+/*   Updated: 2023/06/05 15:08:01 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-void ft_parsing(char **argv, t_data *data)
+void	error_msg(char *str)
 {
-	check_file_ext(argv[1]);
-	init_struct(data);
-	
+	ft_putstr_fd("Error\n", 2);
+	ft_putstr_fd(str, 2);
+	exit(EXIT_FAILURE);
 }
 
-int	main(int argc, char **argv)
+void	check_file_ext1(char *ptr)
 {
-	t_data		data;
-	
-	if (argc != 2)
-		error_msg("Incorrect amount of arguments\n");
-	ft_parsing(argv, &data);
-	return (0);
+	int i;
+
+	i = 0;
+	while (*ptr != '\0')
+		ptr++;
+	if (ft_strncmp(ptr - 4, ".cub", 4) != 0)
+		error_msg("Not a .cub file\n");
+}
+
+void	check_file_ext(char *str)
+{
+	char    *ptr;
+
+	ptr = str;
+	if (!ft_strchr(ptr, 46))
+		error_msg("Not a .cub file\n");
+	else
+		check_file_ext1(ptr);
 }
