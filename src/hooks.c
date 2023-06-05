@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_hooks.c                                         :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/05/30 14:33:02 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 11:32:07 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	red_cross(t_data *vars)
 int	key_down(int keycode, t_data *vars)
 {
 	if (keycode == ARROW_LEFT)
-		vars->x_mid -= 5;
+		vars->player_x--;
 	else if (keycode == ARROW_RIGHT)
-		vars->x_mid += 5;
+		vars->player_x++;
 	else if (keycode == KEY_W)
-		vars->alpha -= M_PI * 5 / 180;
+		vars->player_y -= M_PI * 5 / 180;
 	else if (keycode == KEY_S)
-		vars->alpha += M_PI * 5 / 180;
+		vars->player_y += M_PI * 5 / 180;
 	else if (keycode == KEY_A)
 		vars->beta += M_PI * 5 / 180;
 	else if (keycode == KEY_D)

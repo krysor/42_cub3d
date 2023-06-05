@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/05/30 16:35:24 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 11:26:17 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,43 @@ int	main(int argc, char *argv[])
 {
 	t_data	vars;
 
+	(void)argc;//delete later
 	(void)argv;
-	if (argc != 2)
+	// if (argc != 2)
+	// {
+	// 	printf("Error\nInvalid number of arguments\n");
+	// 	return (1);
+	// }
+
+	int worldMap[mapWidth][mapHeight] =
 	{
-		printf("Error\nInvalid number of arguments\n");
-		return (1);
-	}
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+	};
+	vars.worldMap = &worldMap;
+
 	init_vars(&vars);
 	init_hooks(&vars);
 	mlx_loop(vars.mlx);
@@ -33,26 +64,21 @@ int	main(int argc, char *argv[])
 
 static void	init_vars(t_data *data)
 {
-	data->alpha = 0;
-	data->beta = 0;
-	data->gamma = 0;
-	data->scale = 1;
-	data->x_mid = WINDOW_WIDTH / 2;
-	data->y_mid = WINDOW_HEIGHT / 2;
-	data->i_img = 0;
-
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	data->img1 = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data->img2 = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-}
+	data->i_img = 1;
 
-void	my_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
+	data->player_x = 22;
+	data->player_y = 12;
+	data->direction_x = -1;
+	data->direciton_y = 0;
+	data->plane_x = 0;
+	data->plane_y = 0.66;
 
-	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
-		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	data->alpha = 0;
+	data->beta = 0;
+	data->gamma = 0;
+	data->scale = 1;
 }

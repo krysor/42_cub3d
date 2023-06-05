@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/05/30 14:35:52 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/05 11:25:40 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,34 @@
 # define ON_DESTROY		17
 # define NO_EVENT_MASK	0L
 
+
+
+//lode test//delete after
+# define mapWidth 24
+# define mapHeight 24
+
+
+
 typedef struct s_data
 {
-	double	alpha;
-	double	beta;
-	double	gamma;
-	double	scale;
-	int		x_mid;
-	int		y_mid;
-	int		i_img;
-
-	void	*mlx;
-	void	*win;
-	void	*img1;
-	void	*img2;
-
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	
+	void	*mlx;
+	void	*win;
+	void	*img1;
+	void	*img2;
+	int		i_img;
+
+	void	*world_map;
+	double	player_x;
+	double	player_y;
+	double	direction_x;
+	double	direction_y;
+	double	plane_x;
+	double	plane_y;
 }					t_data;
 
 void		init_hooks(t_data *vars);
