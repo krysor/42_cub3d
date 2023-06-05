@@ -1,30 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 11:58:32 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/05 15:35:44 by dsoroko          ###   ########.fr       */
+/*   Created: 2023/06/05 15:10:29 by dsoroko           #+#    #+#             */
+/*   Updated: 2023/06/05 15:34:04 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-void ft_parsing(char **argv, t_data *data)
+void	init_rgb(t_rgb *rgb)
 {
-	check_file_ext(argv[1]);
-	init_struct(data);
-	
+	int	i;
+
+	i = 0;
+	while (i < 2)
+	{
+		rgb[i].r = 0;
+		rgb[i].g = 0;
+		rgb[i].b = 0;
+		i++;
+	}
 }
 
-int	main(int argc, char **argv)
+void	init_texture(t_tex_parsing tex)
 {
-	t_data		data;
-	
-	if (argc != 2)
-		error_msg("Incorrect amount of arguments\n");
-	ft_parsing(argv, &data);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (tex.texture[i])
+		tex.texture[i] = NULL;
+}
+
+void	init_struct(t_data *data)
+{
+	data->fd = 0;
+	data->count_file = 0;
+	data->count_map = 0;
+	data->map = NULL;
+    init_rgb(data->rgb);
+	init_texture(data->tex_parsing);
+	data->x = 0;
+	data->y = 0;
 }
