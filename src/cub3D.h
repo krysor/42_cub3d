@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/06 15:01:26 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:40:32 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <limits.h>
 # include <math.h>
 # include <float.h>
+
+# include <stdio.h>
 
 //buffer size inside the get_next_line function
 # define BUFFER_SIZE	2000

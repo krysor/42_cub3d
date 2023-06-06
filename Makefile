@@ -17,7 +17,7 @@ NAME	= cub3D
 CC		= cc
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address
 
 ${NAME}:	${OBJS}
 			${MAKE} -C libft
