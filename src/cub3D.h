@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/06 11:38:27 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:01:26 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 //colors in hexadecimal
 # define WHITE			0xffffff
 # define BLACK			0x0
+# define RED			0xff0000
 
 //window size
 # define WINDOW_WIDTH 	1280
@@ -44,8 +45,6 @@
 # define ON_KEYDOWN		2
 # define ON_DESTROY		17
 # define NO_EVENT_MASK	0L
-
-
 
 //lode test//delete after
 # define mapWidth 24
@@ -111,7 +110,7 @@ void		free_all(t_data *vars);
 
 int			render_frame(t_data *data);
 void		raycasting(t_data *data);
-void		init_raycast(t_raycast *rc, t_data *d);
+void		init_raycast(t_raycast *rc, t_data *data, int x);
 void		my_pixel_put(t_data *data, int x, int y, int color);
 
 #endif
