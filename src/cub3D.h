@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/05 15:24:32 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:24:05 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
-# include <fcntl.h>
-# include <limits.h>
 # include "../mlx_linux/mlx.h"
+# include <limits.h>
 # include <math.h>
-# include <stdio.h>
+# include <float.h>
 
 //buffer size inside the get_next_line function
 # define BUFFER_SIZE	2000
@@ -52,15 +51,13 @@
 # define mapWidth 24
 # define mapHeight 24
 
-
-
 typedef struct s_data
 {
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	
+
 	void	*mlx;
 	void	*win;
 	void	*img1;
@@ -79,6 +76,26 @@ typedef struct s_data
 	double	time_old;
 }					t_data;
 
+typedef struct s_raycast
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+
+	int		map_x;
+	int		map_y;
+
+	double	delta_dist_x;
+	double	delta_dist_y;
+
+	double	step_x;
+	double	step_y;
+	double	side_dist_x;
+	double	side_dist_y;
+
+	int		hit;
+}					t_raycast;
+
 void		init_hooks(t_data *vars);
 int			key_hook(int keycode, t_data *vars);
 int			key_down(int keycode, t_data *vars);
@@ -92,6 +109,8 @@ void		free_arr(char **arr);
 void		free_all(t_data *vars);
 
 int			render_frame(t_data *data);
+void		raycasting(t_data *data);
+void		init_raycast(t_raycast *rc, t_data *d);
 void		my_pixel_put(t_data *data, int x, int y, int color);
 
 #endif

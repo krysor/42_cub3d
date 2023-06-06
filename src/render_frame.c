@@ -6,13 +6,13 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:07:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/05 15:51:26 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/06 10:16:00 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	ft_flush_window(t_data *data);
+static void	flush_window(t_data *data);
 
 int	render_frame(t_data *data)
 {
@@ -20,8 +20,8 @@ int	render_frame(t_data *data)
 	{
 		data->addr = mlx_get_data_addr(data->img1, &data->bits_per_pixel,
 				&data->line_length, &data->endian);
-		ft_flush_window(data);
-		//ft_draw_grid(data);
+		flush_window(data);
+		//draw_frame();
 		mlx_put_image_to_window(data->mlx, data->win, data->img1, 0, 0);
 		data->img_next = 2;
 	}
@@ -29,7 +29,7 @@ int	render_frame(t_data *data)
 	{
 		data->addr = mlx_get_data_addr(data->img2, &data->bits_per_pixel,
 				&data->line_length, &data->endian);
-		ft_flush_window(data);
+		flush_window(data);
 		//ft_draw_grid(data);
 		mlx_put_image_to_window(data->mlx, data->win, data->img2, 0, 0);
 		data->img_next = 1;
@@ -37,7 +37,7 @@ int	render_frame(t_data *data)
 	return (0);
 }
 
-static void	ft_flush_window(t_data *data)
+static void	flush_window(t_data *data)
 {
 	int	x;
 	int	y;
