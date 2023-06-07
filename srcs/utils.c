@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 11:58:32 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 12:44:37 by dsoroko          ###   ########.fr       */
+/*   Created: 2023/06/07 11:54:22 by dsoroko           #+#    #+#             */
+/*   Updated: 2023/06/07 11:54:35 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-void ft_parsing(char **argv, t_data *data)
+void	free_split(char **split)
 {
-	check_extension(argv[1]);
-	init_struct(data);
-	generate_map(data, argv);
-	allocate_map(data, argv);
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
 
-int	main(int argc, char **argv)
+void	free_alloc(t_data *data)
 {
-	t_data		data;
-	
-	if (argc != 2)
-		error_msg("Incorrect amount of arguments\n");
-	ft_parsing(argv, &data);
-	return (0);
+	free_split(data->map);
+	free(data->tex_parsing.texture);
 }
