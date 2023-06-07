@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/07 15:31:58 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:12:23 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	mouse_movement(int x, int y, t_data *vars)
 	//static int	x_mid = WINDOW_WIDTH / 2;
 	//static int	y_mid = WINDOW_HEIGHT / 2;
 
-	printf("x: %d\n", x);
-	printf("y: %d\n", y);
+	// printf("x: %d\n", x);
+	// printf("y: %d\n", y);
 
 	(void)y;
 	//mlx_mouse_hide(vars->mlx, vars->win);
