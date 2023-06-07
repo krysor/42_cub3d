@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/07 10:21:09 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:42:00 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define RED			0xff0000
 
 //window size
-# define WINDOW_WIDTH 	1280
-# define WINDOW_HEIGHT	720
+# define WINDOW_WIDTH 	1600//1920//1280//2560//1600
+# define WINDOW_HEIGHT	900//1080//720//1440//900
 
 //keycode values on macOS
 # define ARROW_LEFT		123
