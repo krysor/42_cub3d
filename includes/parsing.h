@@ -6,7 +6,7 @@
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:01:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 12:38:37 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/07 15:15:45 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 
 typedef struct s_rgb
 {
@@ -46,5 +47,34 @@ typedef struct s_data
 }	t_data;
 
 /* Functions */
+
+void	allocate_map_utils(t_data *data, char *argv[]);
+void	allocate_map(t_data *data, char *argv[]);
+void	error_msg(char *str);
+void	check_extension(char *str);
+int		line_content_map(char *ret);
+void	check_wrong_char(char **map, int count_map);
+void	check_dup_char(char **map);
+void	check_empty_line(char **map);
+void	check_map(char **map, t_data *data);
+void	check_gaps(char **map, int count_map);
+int		check_lastchar(char *str);
+void	check_delim_char(char **map);
+void	check_delim_line(char **map, int count_map);
+void	check_overflow(int r, int g, int b);
+void	populate_texture(int idx, t_data *data, int *count, char *ret);
+void	color_check(char **split);
+void	populate_rgb(int idx, t_data *data, int *count, char *ret);
+void	generate_map(t_data *data, char *argv[]);
+void	init_rgb(t_rgb *rgb);
+void	init_texture(t_tex_parsing tex);
+void	init_struct(t_data *data);
+int		line_content(char *ret);
+int		is_space(char c);
+int		skip_space(char *ret);
+void	open_file(t_data *data, char *argv[]);
+void	browse_map_cond(char *ret, t_data *data, int *count);
+void	free_split(char **split);
+void	free_alloc(t_data *data);
 
 #endif

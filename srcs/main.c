@@ -6,7 +6,7 @@
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 11:58:32 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 12:44:37 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/07 15:00:33 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,8 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_msg("Incorrect amount of arguments\n");
 	ft_parsing(argv, &data);
+	check_map(data.map, &data);
+	/*Execution*/
+	free_alloc(&data);
 	return (0);
 }

@@ -1,10 +1,3 @@
-#-------------------------------------------------------------------ASCIIART---------------------------------------------------------------------------------------------
-
-define HEADLOGO
- 
-
-endef
-export HEADLOGO
 
 #-------------------------------------------------------------------COLORS---------------------------------------------------------------------------------------------
 
@@ -85,7 +78,14 @@ RM				= rm -f           														# remove
 
 SRCS			= 	./get_next_line/get_next_line_utils.c\
 					./get_next_line/get_next_line.c\
-					./srcs/
+					./srcs/allocate_map.c\
+					./srcs/check_extension.c\
+					./srcs/check_map.c\
+					./srcs/check_walls.c\
+					./srcs/generate_map.c\
+					./srcs/init_struct.c\
+					./srcs/map_utils.c\
+					./srcs/utils.c
 					
 OBJS	   		 = $(SRCS:.c=.o)       	 												# trasnforms all the ".c" files into ".o" (objects)
 
@@ -93,7 +93,7 @@ HEADER			 = -Iincludes -I./libft.h 												# adds headers
 
 LIBFT 			 = make -C libft/														# compiling Libft
 
-NORM 			 = @norminette 														 	# checking the norm 
+# NORM 			 = @norminette 														 	# checking the norm 
 
 MLX				 = -lmlx -framework OpenGL -framework AppKit  $^ -o $@
 
@@ -107,11 +107,11 @@ all:	    $(NAME)   																	# will execute NAME rule
 		
 $(NAME):	$(OBJS)
 			$(NORM)
-			@echo $(Green)√$(Color_Off)$(BBlue)Norm is OK!$(Color_Off);`
+			@echo $(Green)√$(Color_Off)$(BBlue)Norm is OK!$(Color_Off);
 			@$(LIBFT)
 			@$(CC) $(MLX) ./libft/libft.a -o $(NAME)
 			@echo $(BGreen)√$(Color_Off)$(BBlue)cub3d Has Been Compiled!$(Color_Off);
-			@echo $(BBlue)To Use So Long :$(BGreen)$(UGreen)./cub3d maps/choose_a_map_.ber$(Color_Off);
+			@echo $(BBlue)To Use cub3d :$(BGreen)$(UGreen)./cub3d maps/choose_a_map_.ber$(Color_Off);
 
 clean: 																					# remove all .o
 			@$(RM) $(OBJS) libft/*.o get_next_line/*.o

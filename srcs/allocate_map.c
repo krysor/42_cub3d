@@ -6,14 +6,14 @@
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:56:38 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 12:48:08 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/07 15:09:57 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
 /* Allocate 2D array for the map */
-void	allocate_map_utils(t_data *data, char *argv[])
+void	allocate_map_utils(t_data *data, char **argv)
 {
 	data->map = malloc(sizeof(char *) * (data->count_map + 1));
 	if (!data->map)
@@ -23,8 +23,8 @@ void	allocate_map_utils(t_data *data, char *argv[])
 		error_msg("Open error\n");
 }
 
-/* Read the file w. gnl & dup the map in the 2D array */
-void	allocate_map(t_data *data, char *argv[])
+/* Read the file with gnl & dup the map in the 2D array */
+void	allocate_map(t_data *data, char **argv)
 {
 	char	*ret;
 	int		i;

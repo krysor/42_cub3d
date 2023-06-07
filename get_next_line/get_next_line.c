@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:18:28 by dsoroko           #+#    #+#             */
-/*   Updated: 2022/10/28 17:36:37 by dsoroko          ###   ########.fr       */
+/*   Updated: 2022/05/31 13:14:04 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,32 @@ char	*get_next_line(int fd)
 	static char	*stash;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
-		exit(1);
 		return (NULL);
-	}
 	stash = read_and_stash(fd, stash);
 	if (!stash)
 		return (NULL);
 	line = make_new_line(stash);
 	stash = clean_the_rest(stash);
 	return (line);
+}
+
+#include <stdio.h>
+#include <fcntl.h>
+int main()
+{
+	int fd;
+	fd = open("t.txt", O_RDONLY);
+	char *str;
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	while (str)
+	{
+		str = get_next_line(fd);
+		printf("%s", str);
+		free(str);
+	}
+	//system("leaks out");
+	close(fd);
+	return (0);
 }

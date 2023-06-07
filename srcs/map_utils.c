@@ -6,7 +6,7 @@
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:48:02 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 11:51:56 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/07 15:09:55 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	skip_space(char *ret)
 	return (i);
 }
 
-void	open_file(t_data *data, char *argv[])
+void	open_file(t_data *data, char **argv)
 {
 	data->fd = open(argv[1], O_RDONLY);
 	if (data->fd < 0)

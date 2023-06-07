@@ -6,7 +6,7 @@
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:10:16 by dsoroko           #+#    #+#             */
-/*   Updated: 2022/10/28 17:36:58 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/07 15:21:39 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ char	*ft_strjoin(char *s1, char *s2)
 			str[i++] = s2[j];
 		str[i] = '\0';
 	}
+	free(s1);
 	return (str);
 }
 
