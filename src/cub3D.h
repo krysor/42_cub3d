@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/06 15:40:32 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:21:09 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <limits.h>
 # include <math.h>
 # include <float.h>
-
-# include <stdio.h>
 
 //buffer size inside the get_next_line function
 # define BUFFER_SIZE	2000
@@ -107,12 +105,12 @@ void		move_straight(t_data *data, double fraction);
 void		move_sideways(t_data *data, double fraction);
 void		rotate(t_data *data, double angle);
 
-void		free_arr(char **arr);
-void		free_all(t_data *vars);
-
 int			render_frame(t_data *data);
 void		raycasting(t_data *data);
 void		init_raycast(t_raycast *rc, t_data *data, int x);
 void		my_pixel_put(t_data *data, int x, int y, int color);
+
+void		free_arr(char **arr);
+void		free_all(t_data *vars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/06 16:14:56 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:24:11 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	else
 		perp_wall_distance = rc->side_dist_y - rc->delta_dist_y;
 	line_height = (int)(WINDOW_HEIGHT / perp_wall_distance);
-	draw_start = -line_height / 2 + WINDOW_HEIGHT / 2;
+	draw_start = WINDOW_HEIGHT / 2 - line_height / 2;
 	if (draw_start < 0)
 		draw_start = 0;
-    draw_end = line_height / 2 + WINDOW_HEIGHT / 2;
+	draw_end = WINDOW_HEIGHT / 2 + line_height / 2;
 	if (draw_end >= WINDOW_HEIGHT)
 		draw_end = WINDOW_HEIGHT - 1;
 	color = RED;
