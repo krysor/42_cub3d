@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/07 16:12:23 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 09:51:09 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	init_hooks(t_data *vars)
 	mlx_hook(vars->win, ON_KEYDOWN, NO_EVENT_MASK, key_down, vars);
 
 	mlx_hook(vars->win, 6, 0, mouse_movement, vars);
-	// //mlx_mouse_hook(vars->win, mouse_movement, vars);
+	//mlx_mouse_hook(vars->win, mouse_movement, vars);
 	
 	mlx_key_hook(vars->win, key_hook, vars);
 	mlx_loop_hook(vars->mlx, render_frame, vars);
