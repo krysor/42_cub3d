@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 14:56:04 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:08:51 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	key_release(int keycode, t_data *vars)
 	else if (keycode == KEY_ESC)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
-		red_cross(vars);//without this segfaults
+		red_cross(vars);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:07:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 14:52:46 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:07:27 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ static void	flush_window(t_data *data)
 		y++;
 	}
 }
-
-
 
 void	my_pixel_put(t_data *data, int x, int y, int color)
 {

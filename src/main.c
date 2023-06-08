@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 14:56:26 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:10:48 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,3 @@ int	main(int argc, char *argv[])
 	free_all(&vars);
 	return (0);
 }
-
