@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_free.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 11:36:28 by kkaczoro         ###   ########.fr       */
+/*   Created: 2022/04/13 18:32:05 by dsoroko           #+#    #+#             */
+/*   Updated: 2022/04/27 18:33:29 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	free_arr(char **arr)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int	i;
-
-	if (arr == NULL)
+	if (!s)
 		return ;
-	i = 0;
-	while (arr[i] != NULL)
-		free(arr[i++]);
-	free(arr);
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
 }
 
-void	free_all(t_data *vars)
-{
-	(void)vars;
-	//free(vars->img1);
-	//free(vars->img2);
-}
+// int main ()
+// {
+// 	ft_putendl_fd("Hello", 1);
+// }

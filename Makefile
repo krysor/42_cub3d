@@ -17,13 +17,14 @@ NAME	= cub3D
 CC		= cc
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address -Os -O2 -O3
+
+MLX		= -framework OpenGL -framework AppKit  #$^ -o $@
 
 ${NAME}:	${OBJS}
 			${MAKE} -C libft
-			${MAKE} -C mlx
-			cp mlx/libmlx.dylib .
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} libft/libft.a libmlx.dylib
+			${MAKE} -C mlx_opengl 
+			${CC} ${CFLAGS} ${MLX} -o ${NAME} ${OBJS} libft/libft.a mlx_opengl/libmlx.a
 
 all:		${NAME}
 
@@ -32,12 +33,12 @@ bonus:		${NAME}
 clean:
 			${RM} ${OBJS} ${bOBJS}
 			$(MAKE) clean -C libft
-			$(MAKE) clean -C mlx
+			$(MAKE) clean -C mlx_opengl
 
 fclean:		clean
 			${RM} ${NAME}
 			$(MAKE) fclean -C libft
-			${RM} libmlx.dylib
+			${RM} libmlx.a
 
 re:			fclean all
 

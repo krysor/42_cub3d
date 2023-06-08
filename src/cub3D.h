@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/07 15:51:08 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:56:44 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
-# include "../mlx_linux/mlx.h"
+# include "../mlx_opengl/mlx.h"
 # include <limits.h>
 # include <math.h>
 # include <float.h>
@@ -43,6 +43,7 @@
 
 //mlx keyhook event macros
 # define ON_KEYDOWN		2
+# define ON_MOUSEMOVE	6
 # define ON_DESTROY		17
 # define NO_EVENT_MASK	0L
 
@@ -59,9 +60,7 @@ typedef struct s_data
 
 	void	*mlx;
 	void	*win;
-	void	*img1;
-	void	*img2;
-	int		img_next;
+	void	*img;
 
 	void	*world_map;
 	double	player_x;
@@ -98,8 +97,9 @@ typedef struct s_raycast
 
 void		init_hooks(t_data *vars);
 int			key_hook(int keycode, t_data *vars);
-int			key_down(int keycode, t_data *vars);
 int			red_cross(t_data *vars);
+int			key_down(int keycode, t_data *vars);
+int			mouse_hook(int x, int y, t_data *vars);
 
 void		move_straight(t_data *data, double fraction);
 void		move_sideways(t_data *data, double fraction);

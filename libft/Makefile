@@ -6,7 +6,7 @@
 #    By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/10 15:04:19 by kkaczoro          #+#    #+#              #
-#    Updated: 2023/02/15 18:04:30 by kkaczoro         ###   ########.fr        #
+#    Updated: 2023/06/08 11:24:02 by kkaczoro         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,15 +23,15 @@ RM		= rm -f
 CFLAGS	= -Wall -Wextra -Werror
 
 ${NAME}:	${OBJS}
-			ar r ${NAME} ${OBJS}			
+			@ar r ${NAME} ${OBJS}			
 
 all:		${NAME}
 
 clean:
-			${RM} ${OBJS}
+			@${RM} ${OBJS}
 
 fclean:		clean
-			${RM} ${NAME}
+			@${RM} ${NAME}
 
 re:			fclean all
 

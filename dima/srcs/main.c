@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_free.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 11:36:28 by kkaczoro         ###   ########.fr       */
+/*   Created: 2023/06/01 11:58:32 by dsoroko           #+#    #+#             */
+/*   Updated: 2023/06/01 14:19:44 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../includes/parsing.h"
 
-void	free_arr(char **arr)
+int	main(int argc, char **argv)
 {
-	int	i;
-
-	if (arr == NULL)
-		return ;
-	i = 0;
-	while (arr[i] != NULL)
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_all(t_data *vars)
-{
-	(void)vars;
-	//free(vars->img1);
-	//free(vars->img2);
+	t_data		data;
+	
+	if (argc != 2)
+		error_msg("Incorrect amount of arguments\n");
+	return (0);
 }

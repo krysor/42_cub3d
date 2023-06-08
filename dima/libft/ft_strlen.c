@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_free.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 11:36:28 by kkaczoro         ###   ########.fr       */
+/*   Created: 2022/04/13 16:06:41 by dsoroko           #+#    #+#             */
+/*   Updated: 2022/10/24 15:18:15 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	free_arr(char **arr)
+size_t	ft_strlen(char *str)
 {
-	int	i;
+	size_t	i;
 
-	if (arr == NULL)
-		return ;
 	i = 0;
-	while (arr[i] != NULL)
-		free(arr[i++]);
-	free(arr);
-}
-
-void	free_all(t_data *vars)
-{
-	(void)vars;
-	//free(vars->img1);
-	//free(vars->img2);
+	while (str[i])
+		i++;
+	return (i);
 }

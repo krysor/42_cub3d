@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:07:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/06 16:13:11 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:56:48 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,11 @@ static void	flush_window(t_data *data);
 
 int	render_frame(t_data *data)
 {
-	if (data->img_next == 1)
-	{
-		data->addr = mlx_get_data_addr(data->img1, &data->bits_per_pixel,
-				&data->line_length, &data->endian);
-		flush_window(data);
-		raycasting(data);
-		mlx_put_image_to_window(data->mlx, data->win, data->img1, 0, 0);
-		data->img_next = 2;
-	}
-	else
-	{
-		data->addr = mlx_get_data_addr(data->img2, &data->bits_per_pixel,
-				&data->line_length, &data->endian);
-		flush_window(data);
-		raycasting(data);
-		mlx_put_image_to_window(data->mlx, data->win, data->img2, 0, 0);
-		data->img_next = 1;
-	}
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+			&data->line_length, &data->endian);
+	flush_window(data);
+	raycasting(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }
 
