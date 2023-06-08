@@ -5,7 +5,7 @@ CFILES	= 	\
 			utils_free.c \
 			render_frame.c \
 			raycasting.c \
-			init_raycast.c \
+			init.c \
 			get_color.c
 			
 SRCS 	= $(addprefix src/, ${CFILES})

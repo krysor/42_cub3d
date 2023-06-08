@@ -6,13 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/06 16:43:57 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:56:26 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static void	init_vars(t_data *data);
 
 int	main(int argc, char *argv[])
 {
@@ -62,21 +60,3 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-static void	init_vars(t_data *data)
-{
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
-	data->img1 = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data->img2 = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	data->img_next = 1;
-
-	data->player_x = 22;
-	data->player_y = 12;
-	data->direction_x = -1;
-	data->direction_y = 0;
-	data->plane_x = 0;
-	data->plane_y = 0.66;
-
-	data->time = 0;
-	data->time_old = 0;
-}

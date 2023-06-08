@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 11:56:44 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:57:23 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../mlx_opengl/mlx.h"
+# include <stdbool.h>
 # include <limits.h>
 # include <math.h>
 # include <float.h>
@@ -40,16 +41,38 @@
 # define KEY_S			1
 # define KEY_D 			2
 # define KEY_ESC		53
+# define CTRL_LEFT		256
+# define SHIFT_LEFT		257
 
 //mlx keyhook event macros
 # define ON_KEYDOWN		2
+# define ON_KEYUP		3
 # define ON_MOUSEMOVE	6
 # define ON_DESTROY		17
 # define NO_EVENT_MASK	0L
 
+# define UP				0
+# define DOWN			1
+
+# define SPEED_WALK		0.01
+# define SPEED_NORMAL	0.05
+# define SPEED_SPRINT	0.10
+
 //lode test//delete after
 # define mapWidth 24
 # define mapHeight 24
+
+typedef struct s_keys
+{
+	int		arrow_left;
+	int		arrow_right;
+	int		key_w;
+	int		key_a;
+	int		key_s;
+	int		key_d;
+	int		shift_left;
+	int		ctrl_left;
+}				t_keys;
 
 typedef struct s_data
 {
@@ -61,6 +84,9 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	void	*img;
+
+	t_keys	keys;
+	double	player_speed;
 
 	void	*world_map;
 	double	player_x;
@@ -95,10 +121,12 @@ typedef struct s_raycast
 	int		side;
 }					t_raycast;
 
+void		init_vars(t_data *data);
+
 void		init_hooks(t_data *vars);
-int			key_hook(int keycode, t_data *vars);
 int			red_cross(t_data *vars);
-int			key_down(int keycode, t_data *vars);
+int			key_press(int keycode, t_data *vars);
+int			key_release(int keycode, t_data *vars);
 int			mouse_hook(int x, int y, t_data *vars);
 
 void		move_straight(t_data *data, double fraction);
@@ -106,6 +134,7 @@ void		move_sideways(t_data *data, double fraction);
 void		rotate(t_data *data, double angle);
 
 int			render_frame(t_data *data);
+void		key_handler(t_data *vars);
 void		raycasting(t_data *data);
 void		init_raycast(t_raycast *rc, t_data *data, int x);
 void		my_pixel_put(t_data *data, int x, int y, int color);

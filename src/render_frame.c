@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:07:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 11:56:48 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/08 14:52:46 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	render_frame(t_data *data)
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
 			&data->line_length, &data->endian);
 	flush_window(data);
+	key_handler(data);
 	raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
@@ -47,6 +48,8 @@ static void	flush_window(t_data *data)
 		y++;
 	}
 }
+
+
 
 void	my_pixel_put(t_data *data, int x, int y, int color)
 {
