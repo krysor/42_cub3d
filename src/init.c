@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:55:55 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 15:10:05 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:30:46 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	init_vars(t_data *data)
 	data->direction_y = 0;
 	data->plane_x = 0;
 	data->plane_y = 0.66;
+	//add all textures initialisations
+	data->tex = l
 }
 
 void	init_hooks(t_data *vars)

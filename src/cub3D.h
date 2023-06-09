@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/09 14:50:46 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:30:38 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ typedef struct s_data
 
 	int		tex_width;
 	int		tex_height;
+
+	void	*tex;
 }					t_data;
 
 typedef struct s_raycast
