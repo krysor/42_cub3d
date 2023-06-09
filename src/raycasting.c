@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/09 11:26:18 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/09 14:46:20 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,4 +117,7 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
         draw.tex_pos += draw.step;
         my_pixel_put(data, x, draw.start++, RED);//paste coordinate texture instead of RED
 	}
+
+	//void *img = mlx_xpm_file_to_image(vars.mlx, "xpm/1.xpm", &vars.tex_width, &vars.tex_height);
+	// printf("img[%d][%d]: %u\n", 0, 0, *(mlx_get_data_addr(img, &vars.bits_per_pixel, &vars.line_length, &vars.endian) + 1));
 }
