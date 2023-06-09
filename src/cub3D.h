@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 15:10:26 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:01:21 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@
 # define WINDOW_HEIGHT	720//1080//720//1440//900
 
 //keycode values on macOS
-# define ARROW_LEFT		123
-# define ARROW_RIGHT	124
-
 # define KEY_W 			13
 # define KEY_A			0
 # define KEY_S			1
 # define KEY_D 			2
 # define KEY_ESC		53
+# define ARROW_LEFT		123
+# define ARROW_RIGHT	124
 # define CTRL_LEFT		256
 # define SHIFT_LEFT		257
 
@@ -117,6 +116,21 @@ typedef struct s_raycast
 	int		hit;
 	int		side;
 }					t_raycast;
+
+typedef struct s_draw
+{
+	int		line_height;
+	int		start;
+	int		end;
+
+	double	wall_x;
+	double	tex_x;
+
+	double	step;
+	double	tex_pos;
+	
+	int		tex_y;
+}					t_draw;
 
 void		init_vars(t_data *data);
 

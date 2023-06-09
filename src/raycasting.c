@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/07 10:24:11 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:04:40 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,25 +84,37 @@ static void	dda(t_raycast *rc, int **world_map)
 static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 {
 	double	perp_wall_distance;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	int		color;
+	t_draw	draw;
 
 	if (rc->side == 0)
 		perp_wall_distance = rc->side_dist_x - rc->delta_dist_x;
 	else
 		perp_wall_distance = rc->side_dist_y - rc->delta_dist_y;
-	line_height = (int)(WINDOW_HEIGHT / perp_wall_distance);
-	draw_start = WINDOW_HEIGHT / 2 - line_height / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = WINDOW_HEIGHT / 2 + line_height / 2;
-	if (draw_end >= WINDOW_HEIGHT)
-		draw_end = WINDOW_HEIGHT - 1;
-	color = RED;
-	if (rc->side == 1)
-		color /= 2;
-	while (draw_start < draw_end)
-		my_pixel_put(data, x, draw_start++, color);
+	draw.line_height = (int)(WINDOW_HEIGHT / perp_wall_distance);
+	draw.start = (WINDOW_HEIGHT - line_height) / 2;
+	if (draw.start < 0)
+		draw.start = 0;
+	draw.end = (WINDOW_HEIGHT + line_height) / 2;
+	if (draw.end >= WINDOW_HEIGHT)
+		draw.end = WINDOW_HEIGHT - 1;
+	// color = RED;
+	// if (rc->side == 1)
+	// 	color /= 2;
+	// while (draw_start < draw_end)
+	// 	my_pixel_put(data, x, draw_start++, color);
+	if (rc->side == 0)
+		draw.wall_x = data->player_y + perp_wall_distance * rc->ray_dir_y;
+	else
+		draw.wall_x = data->player_x + perp_wall_distance * rc->ray_dir_x;
+	draw.wall_x -= floor(draw.wall_x);
+	draw.tex_x = data->tex_width - (int)(wall_x * (double)data->tex_width) - 1;//width and height missing
+	draw.step = (double)(data->tex_height / draw.line_height);//width and height missing
+	
+	draw.tex_pos = (draw.start + (draw.line_height - WINDOW_HEIGHT) / 2) * draw.step;
+	while (draw.start < draw.end)
+	{
+		tex_y = (int)draw.tex_pos & (data->tex_height - 1);//width and height missing
+        draw.tex_pos += draw.step;
+        my_pixel_put(data, x, draw.start++, RED);//paste coordinate texture instead of RED
+	}
 }
