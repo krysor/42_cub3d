@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/09 11:07:29 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/09 12:00:09 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,13 @@ int	main(int argc, char *argv[])
 
 	init_vars(&vars);
 	
-	void *img = mlx_xpm_file_to_image(data->mlx, "/textures/greenlight.png", &data->tex_width, &data->tex_height);
+	
+	void *img = mlx_xpm_file_to_image(vars.mlx, "xpm/1.xpm", &vars.tex_width, &vars.tex_height);
+	//(void)img;
+
+	printf("img[%d][%d]: %d\n", 0, 0, (int)(*img));
+	
+	return (0);
 
 	init_hooks(&vars);
 	mlx_loop(vars.mlx);
