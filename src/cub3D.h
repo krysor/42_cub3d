@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/09 10:01:21 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/09 10:32:04 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ typedef struct s_data
 	double	direction_y;
 	double	plane_x;
 	double	plane_y;
+
+	int		tex_width;
+	int		tex_height;
 }					t_data;
 
 typedef struct s_raycast

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 15:10:48 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/09 11:07:29 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char *argv[])
 	// 	printf("Error\nInvalid number of arguments\n");
 	// 	return (1);
 	// }
+
 
 	int worldMap[mapWidth][mapHeight] =
 	{
@@ -54,6 +55,9 @@ int	main(int argc, char *argv[])
 	vars.world_map = &worldMap;
 
 	init_vars(&vars);
+	
+	void *img = mlx_xpm_file_to_image(data->mlx, "/textures/greenlight.png", &data->tex_width, &data->tex_height);
+
 	init_hooks(&vars);
 	mlx_loop(vars.mlx);
 	free_all(&vars);
