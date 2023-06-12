@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/09 14:46:20 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/12 11:59:07 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,12 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	draw.end = (WINDOW_HEIGHT + draw.line_height) / 2;
 	if (draw.end >= WINDOW_HEIGHT)
 		draw.end = WINDOW_HEIGHT - 1;
-	// color = RED;
-	// if (rc->side == 1)
-	// 	color /= 2;
-	// while (draw_start < draw_end)
-	// 	my_pixel_put(data, x, draw_start++, color);
+		
+	int color = RED;
+	if (rc->side == 1)
+		color /= 2;
+	while (draw.start < draw.end)
+		my_pixel_put(data, x, draw.start++, color);
 	if (rc->side == 0)
 		draw.wall_x = data->player_y + perp_wall_distance * rc->ray_dir_y;
 	else
@@ -115,9 +116,9 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	{
 		draw.tex_y = (int)draw.tex_pos & (data->tex_height - 1);//width and height missing
         draw.tex_pos += draw.step;
-        my_pixel_put(data, x, draw.start++, RED);//paste coordinate texture instead of RED
+        my_pixel_put(data, x, draw.start++, *(mlx_get_data_addr(data->tex, &data->bits_per_pixel, &data->line_length, &data->endian) + data->tex_height * draw.tex_y + (int)draw.tex_x));
 	}
 
 	//void *img = mlx_xpm_file_to_image(vars.mlx, "xpm/1.xpm", &vars.tex_width, &vars.tex_height);
-	// printf("img[%d][%d]: %u\n", 0, 0, *(mlx_get_data_addr(img, &vars.bits_per_pixel, &vars.line_length, &vars.endian) + 1));
+	// printf("img[%d][%d]: %u\n", 0, 0, *(mlx_get_data_addr(img, &vars.bits_per_pixel, &vars.line_length, &vars.endian)));
 }
