@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/12 15:58:38 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:04:12 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,19 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	while (draw.start < draw.end)
 	{
 		draw.tex_y = (int)draw.tex_pos;// & (data->tex_height - 1);//width and height missing
-        //my_pixel_put(data, x, draw.start, *(mlx_get_data_addr(data->tex, &data->bits_per_pixel, &data->line_length, &data->endian) + (data->line_length * draw.tex_y + (int)draw.tex_x * data->bits_per_pixel / 8)));
+        printf("tex_y: %d\n", draw.tex_y);
+		//my_pixel_put(data, x, draw.start, *(mlx_get_data_addr(data->tex, &data->bits_per_pixel, &data->line_length, &data->endian) + (data->line_length * draw.tex_y + (int)draw.tex_x * data->bits_per_pixel / 8)));
 		
-		my_pixel_put(data, x, draw.start, *(unsigned int *)(data->tex + (draw.tex_y * data->line_length + (int)draw.tex_x * (data->bits_per_pixel / 8))));
-		
+		printf("before or after segv1\n");
+		char *add = data->tex_addr + (draw.tex_y * data->tex_line_length + (int)draw.tex_x * (data->tex_bits_per_pixel / 8));
+		printf("before or after segv2\n");
+		printf("add as p: %p\n", add);
+		printf("add: %s\n", add);
+		printf("*add = %c\n", *add);
+		int	color = *(unsigned int *)add;
+		printf("before or after segv3\n");
+		my_pixel_put(data, x, draw.start, color);
+
 		draw.tex_pos += draw.step;
 		draw.start++;
 	}

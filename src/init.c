@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:55:55 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/12 11:47:53 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/12 16:43:44 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_vars(t_data *data)
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	data->img = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+			&data->line_length, &data->endian);
 	data->keys.key_w = UP;
 	data->keys.key_a = UP;
 	data->keys.key_s = UP;
@@ -37,6 +39,7 @@ void	init_vars(t_data *data)
 	data->plane_y = 0.66;
 	//add all textures initialisations
 	data->tex = mlx_xpm_file_to_image(data->mlx, "xpm/1.xpm", &data->tex_width, &data->tex_height);
+	data->tex_addr = mlx_get_data_addr(data->tex_addr, &data->tex_bits_per_pixel, &data->tex_line_length, &data->tex_endian);
 }
 
 void	init_hooks(t_data *vars)
