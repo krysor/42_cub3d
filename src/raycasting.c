@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/12 11:59:07 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/12 15:58:38 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,27 +98,33 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	if (draw.end >= WINDOW_HEIGHT)
 		draw.end = WINDOW_HEIGHT - 1;
 		
-	int color = RED;
-	if (rc->side == 1)
-		color /= 2;
-	while (draw.start < draw.end)
-		my_pixel_put(data, x, draw.start++, color);
+	// int color = RED;
+	// if (rc->side == 1)
+	// 	color /= 2;
+	// while (draw.start < draw.end)
+	// 	my_pixel_put(data, x, draw.start++, color);
+	
 	if (rc->side == 0)
 		draw.wall_x = data->player_y + perp_wall_distance * rc->ray_dir_y;
 	else
 		draw.wall_x = data->player_x + perp_wall_distance * rc->ray_dir_x;
 	draw.wall_x -= floor(draw.wall_x);
-	draw.tex_x = data->tex_width - (int)(draw.wall_x * (double)data->tex_width) - 1;//width and height missing
-	draw.step = (double)(data->tex_height / draw.line_height);//width and height missing
-	
+
+	draw.tex_x = (int)(draw.wall_x * (double)data->tex_width);
+	if ((rc->side == 0 && rc->ray_dir_x > 0) || (rc->side == 1 && rc->ray_dir_y < 0)) 
+		draw.tex_x = data->tex_width - draw.tex_x - 1;//width and height missing
+
+	draw.step = 1.0 * data->tex_height / draw.line_height;//width and height missing
+
 	draw.tex_pos = (draw.start + (draw.line_height - WINDOW_HEIGHT) / 2) * draw.step;
 	while (draw.start < draw.end)
 	{
-		draw.tex_y = (int)draw.tex_pos & (data->tex_height - 1);//width and height missing
-        draw.tex_pos += draw.step;
-        my_pixel_put(data, x, draw.start++, *(mlx_get_data_addr(data->tex, &data->bits_per_pixel, &data->line_length, &data->endian) + data->tex_height * draw.tex_y + (int)draw.tex_x));
+		draw.tex_y = (int)draw.tex_pos;// & (data->tex_height - 1);//width and height missing
+        //my_pixel_put(data, x, draw.start, *(mlx_get_data_addr(data->tex, &data->bits_per_pixel, &data->line_length, &data->endian) + (data->line_length * draw.tex_y + (int)draw.tex_x * data->bits_per_pixel / 8)));
+		
+		my_pixel_put(data, x, draw.start, *(unsigned int *)(data->tex + (draw.tex_y * data->line_length + (int)draw.tex_x * (data->bits_per_pixel / 8))));
+		
+		draw.tex_pos += draw.step;
+		draw.start++;
 	}
-
-	//void *img = mlx_xpm_file_to_image(vars.mlx, "xpm/1.xpm", &vars.tex_width, &vars.tex_height);
-	// printf("img[%d][%d]: %u\n", 0, 0, *(mlx_get_data_addr(img, &vars.bits_per_pixel, &vars.line_length, &vars.endian)));
 }
