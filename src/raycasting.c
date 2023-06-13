@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 09:18:51 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 11:45:50 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,17 +107,29 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	else
 		draw.wall_x = data->player_x + perp_wall_distance * rc->ray_dir_x;
 	draw.wall_x -= floor(draw.wall_x);
-	draw.tex_x = (int)(draw.wall_x * (double)data->tex_width);
+
+	t_img	*tex;
+	if (rc->side == 1 && )
+		tex = &data->tex[0];
+	if (rc->side == 1 && )
+		tex = &data->tex[1];
+	if (rc->side == 0 && )
+		tex = &data->tex[2];
+	if (rc->side == 0 && )
+		tex = &data->tex[3];
+
+	
+	draw.tex_x = (int)(draw.wall_x * (double)tex->width);
 	if ((rc->side == 0 && rc->ray_dir_x > 0) || (rc->side == 1 && rc->ray_dir_y < 0)) 
-		draw.tex_x = data->tex_width - draw.tex_x - 1;//width and height missing
-	draw.step = 1.0 * data->tex_height / draw.line_height;//width and height missing
+		draw.tex_x = tex->width - draw.tex_x - 1;//width and height missing
+	draw.step = 1.0 * tex->height / draw.line_height;//width and height missing
 	draw.tex_pos = (draw.start + (draw.line_height - WINDOW_HEIGHT) / 2) * draw.step;
 	while (draw.start < draw.end)
 	{
 		draw.tex_y = (int)draw.tex_pos;
-		char *add = data->tex_addr + (draw.tex_y * data->tex_line_length + (int)draw.tex_x * (data->tex_bits_per_pixel / 8));
+		char *add = tex->addr + (draw.tex_y * tex->line_length + (int)draw.tex_x * (data->tex->bits_per_pixel / 8));
 		int	color = *(unsigned int *)add;
-		my_pixel_put(data, x, draw.start, color);
+		my_pixel_put(&data->img, x, draw.start, color);
 		draw.tex_pos += draw.step;
 		draw.start++;
 	}

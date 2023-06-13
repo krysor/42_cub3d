@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 10:15:58 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:36:14 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,12 @@ static void	init_hooks(t_data *vars)
 	mlx_hook(vars->win, ON_KEYUP, NO_EVENT_MASK, key_release, vars);
 	mlx_hook(vars->win, ON_MOUSEMOVE, NO_EVENT_MASK, mouse_hook, vars);
 	mlx_loop_hook(vars->mlx, render_frame, vars);
+}
+
+void	handle_error(t_data *data, char *error_message)
+{
+	if (error_message != NULL)
+		printf("%s\n", error_message);
+	free_all(data);
+	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 10:14:16 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 11:12:21 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,20 @@
 # define mapWidth 24
 # define mapHeight 24
 
+typedef struct s_img
+{
+	void	*img;
+	int		width;
+	int		height;
+
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+
+	char	*path;
+}					t_img;
+
 typedef struct s_keys
 {
 	int		arrow_left;
@@ -77,14 +91,9 @@ typedef struct s_keys
 
 typedef struct s_data
 {
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-
 	void	*mlx;
 	void	*win;
-	void	*img;
+	t_img	img;
 
 	t_keys	keys;
 	double	player_speed;
@@ -97,14 +106,7 @@ typedef struct s_data
 	double	plane_x;
 	double	plane_y;
 
-	void	*tex;
-	int		tex_width;
-	int		tex_height;
-
-	char	*tex_addr;
-	int		tex_bits_per_pixel;
-	int		tex_line_length;
-	int		tex_endian;
+	t_img	tex[4];
 }					t_data;
 
 typedef struct s_raycast
@@ -158,8 +160,9 @@ int			render_frame(t_data *data);
 void		key_handler(t_data *vars);
 void		raycasting(t_data *data);
 void		init_raycast(t_raycast *rc, t_data *data, int x);
-void		my_pixel_put(t_data *data, int x, int y, int color);
+void		my_pixel_put(t_img *img, int x, int y, int color);
 
+void		handle_error(t_data *data, char *error_message);
 void		free_arr(char **arr);
 void		free_all(t_data *vars);
 
