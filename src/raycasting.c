@@ -6,14 +6,16 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 13:06:56 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:43:27 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	dda(t_raycast *rc, int **world_map);
-static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x);
+static void		dda(t_raycast *rc, int **world_map);
+static void		draw_vertical_stripe(t_raycast *rc, t_data *data, int x);
+static t_img	*get_texture(t_raycast *rc, t_data *data);
+static void		draw_init(t_raycast *rc, t_data *data, t_draw *draw, t_img *tex);
 
 void	raycasting(t_data *data)
 {
@@ -83,54 +85,65 @@ static void	dda(t_raycast *rc, int **world_map)
 
 static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 {
-	double	perp_wall_distance;
 	t_draw	draw;
-
-	if (rc->side == 0)
-		perp_wall_distance = rc->side_dist_x - rc->delta_dist_x;
-	else
-		perp_wall_distance = rc->side_dist_y - rc->delta_dist_y;
-	draw.line_height = (int)(WINDOW_HEIGHT / perp_wall_distance);
-	draw.start = (WINDOW_HEIGHT - draw.line_height) / 2;
-	if (draw.start < 0)
-		draw.start = 0;
-	draw.end = (WINDOW_HEIGHT + draw.line_height) / 2;
-	if (draw.end >= WINDOW_HEIGHT)
-		draw.end = WINDOW_HEIGHT - 1;
-	// int color = RED;
-	// if (rc->side == 1)
-	// 	color /= 2;
-	// while (draw.start < draw.end)
-	// 	my_pixel_put(data, x, draw.start++, color);
-	if (rc->side == 0)
-		draw.wall_x = data->player_y + perp_wall_distance * rc->ray_dir_y;
-	else
-		draw.wall_x = data->player_x + perp_wall_distance * rc->ray_dir_x;
-	draw.wall_x -= floor(draw.wall_x);
-
 	t_img	*tex;
-	if (rc->side == 1 && rc->ray_dir_y > 0)
-		tex = &data->tex[0];
-	if (rc->side == 1 && rc->ray_dir_y < 0)
-		tex = &data->tex[1];
-	if (rc->side == 0 && rc->ray_dir_x > 0)
-		tex = &data->tex[2];
-	if (rc->side == 0 && rc->ray_dir_x < 0)
-		tex = &data->tex[3];
+	char	*add;
+	int		color;
 
-
-	draw.tex_x = (int)(draw.wall_x * (double)tex->width);
-	if ((rc->side == 0 && rc->ray_dir_x > 0) || (rc->side == 1 && rc->ray_dir_y < 0)) 
-		draw.tex_x = tex->width - draw.tex_x - 1;//width and height missing
-	draw.step = 1.0 * tex->height / draw.line_height;//width and height missing
-	draw.tex_pos = (draw.start + (draw.line_height - WINDOW_HEIGHT) / 2) * draw.step;
+	tex = get_texture(rc, data);
+	if (tex == NULL)
+		handle_error(data, "get_texture: no texture found");
+	draw_init(rc, data, &draw, tex);
 	while (draw.start < draw.end)
 	{
 		draw.tex_y = (int)draw.tex_pos;
-		char *add = tex->addr + (draw.tex_y * tex->line_length + (int)draw.tex_x * (data->tex->bits_per_pixel / 8));
-		int	color = *(unsigned int *)add;
+		add = tex->addr + draw.tex_y * tex->line_length
+			+ draw.tex_x * (tex->bits_per_pixel / 8);
+		color = *(unsigned int *)add;
 		my_pixel_put(&data->img, x, draw.start, color);
 		draw.tex_pos += draw.step;
 		draw.start++;
 	}
+}
+
+static t_img	*get_texture(t_raycast *rc, t_data *data)
+{
+	if (rc->side == 1 && rc->ray_dir_y > 0)
+		return (&data->tex[0]);
+	if (rc->side == 1 && rc->ray_dir_y < 0)
+		return (&data->tex[1]);
+	if (rc->side == 0 && rc->ray_dir_x > 0)
+		return (&data->tex[2]);
+	if (rc->side == 0 && rc->ray_dir_x < 0)
+		return (&data->tex[3]);
+	return (NULL);
+}
+
+static void	draw_init(t_raycast *rc, t_data *data, t_draw *draw, t_img *tex)
+{
+	if (rc->side == 0)
+		draw->perp_wall_distance = rc->side_dist_x - rc->delta_dist_x;
+	else
+		draw->perp_wall_distance = rc->side_dist_y - rc->delta_dist_y;
+	draw->line_height = (int)(WINDOW_HEIGHT / draw->perp_wall_distance);
+	draw->start = (WINDOW_HEIGHT - draw->line_height) / 2;
+	if (draw->start < 0)
+		draw->start = 0;
+	draw->end = (WINDOW_HEIGHT + draw->line_height) / 2;
+	if (draw->end >= WINDOW_HEIGHT)
+		draw->end = WINDOW_HEIGHT - 1;
+	if (rc->side == 0)
+		draw->wall_x = data->player_y
+			+ draw->perp_wall_distance * rc->ray_dir_y;
+	else
+		draw->wall_x = data->player_x
+			+ draw->perp_wall_distance * rc->ray_dir_x;
+	draw->wall_x -= floor(draw->wall_x);
+	draw->tex_x = (int)(draw->wall_x * (double)tex->width);
+	if ((rc->side == 0 && rc->ray_dir_x > 0)
+		|| (rc->side == 1 && rc->ray_dir_y < 0)) 
+		draw->tex_x = tex->width - draw->tex_x - 1;
+	draw->step = 1.0 * tex->height / draw->line_height;
+	draw->tex_pos = draw->step
+		* (draw->start + (draw->line_height - WINDOW_HEIGHT) / 2);
 }

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 13:40:16 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:20:19 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,17 +132,21 @@ typedef struct s_raycast
 
 typedef struct s_draw
 {
+	double	perp_wall_distance;
+
 	int		line_height;
 	int		start;
 	int		end;
 
 	double	wall_x;
-	double	tex_x;
+
+	int		tex_x;
+	double	tex_pos;
+	int		tex_y;
 
 	double	step;
-	double	tex_pos;
 
-	int		tex_y;
+
 }					t_draw;
 
 void		init_data(t_data *data);
