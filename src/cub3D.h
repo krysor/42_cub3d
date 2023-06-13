@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 11:12:21 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:40:16 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,25 +145,25 @@ typedef struct s_draw
 	int		tex_y;
 }					t_draw;
 
-void		init_vars(t_data *data);
+void		init_data(t_data *data);
 
-int			red_cross(t_data *vars);
-int			key_press(int keycode, t_data *vars);
-int			key_release(int keycode, t_data *vars);
-int			mouse_hook(int x, int y, t_data *vars);
+int			red_cross(t_data *data);
+int			key_press(int keycode, t_data *data);
+int			key_release(int keycode, t_data *data);
+int			mouse_hook(int x, int y, t_data *data);
 
 void		move_straight(t_data *data, double fraction);
 void		move_sideways(t_data *data, double fraction);
 void		rotate(t_data *data, double angle);
 
 int			render_frame(t_data *data);
-void		key_handler(t_data *vars);
+void		key_handler(t_data *data);
 void		raycasting(t_data *data);
 void		init_raycast(t_raycast *rc, t_data *data, int x);
 void		my_pixel_put(t_img *img, int x, int y, int color);
 
 void		handle_error(t_data *data, char *error_message);
 void		free_arr(char **arr);
-void		free_all(t_data *vars);
+void		free_all(t_data *data);
 
 #endif

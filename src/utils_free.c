@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 15:07:19 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:41:59 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
-void	free_all(t_data *vars)
+void	free_all(t_data *data)
 {
-	(void)vars;
+	(void)data;
 }

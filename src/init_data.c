@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_vars.c                                        :+:      :+:    :+:   */
+/*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:11:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 11:43:56 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:39:12 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	init_mlx(t_data *data);
 static void	init_textures(t_data *data);
 
-void	init_vars(t_data *data)
+void	init_data(t_data *data)
 {
 	init_mlx(data);
 
@@ -23,7 +23,7 @@ void	init_vars(t_data *data)
 	data->tex[1].path = "xpm/2.xpm";
 	data->tex[2].path = "xpm/3.xpm";
 	data->tex[3].path = "xpm/4.xpm";
-	
+
 	init_textures(data);
 	data->keys.key_w = UP;
 	data->keys.key_a = UP;

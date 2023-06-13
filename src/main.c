@@ -6,17 +6,17 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 10:36:14 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:41:55 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	init_hooks(t_data *vars);
+static void	init_hooks(t_data *data);
 
 int	main(int argc, char *argv[])
 {
-	t_data	vars;
+	t_data	data;
 
 	(void)argc;//delete later
 	(void)argv;
@@ -54,21 +54,21 @@ int	main(int argc, char *argv[])
 	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
-	vars.world_map = &worldMap;
+	data.world_map = &worldMap;
 
-	init_vars(&vars);
-	init_hooks(&vars);
-	mlx_loop(vars.mlx);
+	init_data(&data);
+	init_hooks(&data);
+	mlx_loop(data.mlx);
 }
 
-static void	init_hooks(t_data *vars)
+static void	init_hooks(t_data *data)
 {
-	mlx_mouse_hide(vars->mlx, vars->win);
-	mlx_hook(vars->win, ON_DESTROY, NO_EVENT_MASK, red_cross, vars);
-	mlx_hook(vars->win, ON_KEYDOWN, NO_EVENT_MASK, key_press, vars);
-	mlx_hook(vars->win, ON_KEYUP, NO_EVENT_MASK, key_release, vars);
-	mlx_hook(vars->win, ON_MOUSEMOVE, NO_EVENT_MASK, mouse_hook, vars);
-	mlx_loop_hook(vars->mlx, render_frame, vars);
+	mlx_mouse_hide(data->mlx, data->win);
+	mlx_hook(data->win, ON_DESTROY, NO_EVENT_MASK, red_cross, data);
+	mlx_hook(data->win, ON_KEYDOWN, NO_EVENT_MASK, key_press, data);
+	mlx_hook(data->win, ON_KEYUP, NO_EVENT_MASK, key_release, data);
+	mlx_hook(data->win, ON_MOUSEMOVE, NO_EVENT_MASK, mouse_hook, data);
+	mlx_loop_hook(data->mlx, render_frame, data);
 }
 
 void	handle_error(t_data *data, char *error_message)

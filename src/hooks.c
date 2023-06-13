@@ -6,94 +6,94 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 10:16:10 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:41:50 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	red_cross(t_data *vars)
+int	red_cross(t_data *data)
 {
-	free_all(vars);
+	free_all(data);
 	//system("leaks cub3D");
 	exit(0);
 	return (0);
 }
 
-int	key_press(int keycode, t_data *vars)
+int	key_press(int keycode, t_data *data)
 {
 	if (keycode == KEY_W)
-		vars->keys.key_w = DOWN;
+		data->keys.key_w = DOWN;
 	else if (keycode == KEY_S)
-		vars->keys.key_s = DOWN;
+		data->keys.key_s = DOWN;
 	else if (keycode == KEY_A)
-		vars->keys.key_a = DOWN;
+		data->keys.key_a = DOWN;
 	else if (keycode == KEY_D)
-		vars->keys.key_d = DOWN;
+		data->keys.key_d = DOWN;
 	else if (keycode == SHIFT_LEFT)
-		vars->keys.shift_left = DOWN;
+		data->keys.shift_left = DOWN;
 	else if (keycode == CTRL_LEFT)
-		vars->keys.ctrl_left = DOWN;
+		data->keys.ctrl_left = DOWN;
 	else if (keycode == ARROW_LEFT)
-		vars->keys.arrow_left = DOWN;
+		data->keys.arrow_left = DOWN;
 	else if (keycode == ARROW_RIGHT)
-		vars->keys.arrow_right = DOWN;
+		data->keys.arrow_right = DOWN;
 	return (0);
 }
 
-int	key_release(int keycode, t_data *vars)
+int	key_release(int keycode, t_data *data)
 {
 	if (keycode == KEY_W)
-		vars->keys.key_w = UP;
+		data->keys.key_w = UP;
 	else if (keycode == KEY_S)
-		vars->keys.key_s = UP;
+		data->keys.key_s = UP;
 	else if (keycode == KEY_A)
-		vars->keys.key_a = UP;
+		data->keys.key_a = UP;
 	else if (keycode == KEY_D)
-		vars->keys.key_d = UP;
+		data->keys.key_d = UP;
 	else if (keycode == ARROW_LEFT)
-		vars->keys.arrow_left = UP;
+		data->keys.arrow_left = UP;
 	else if (keycode == ARROW_RIGHT)
-		vars->keys.arrow_right = UP;
+		data->keys.arrow_right = UP;
 	else if (keycode == SHIFT_LEFT)
-		vars->keys.shift_left = UP;
+		data->keys.shift_left = UP;
 	else if (keycode == CTRL_LEFT)
-		vars->keys.ctrl_left = UP;
+		data->keys.ctrl_left = UP;
 	else if (keycode == KEY_ESC)
 	{
-		mlx_destroy_window(vars->mlx, vars->win);
-		red_cross(vars);
+		mlx_destroy_window(data->mlx, data->win);
+		red_cross(data);
 	}
 	return (0);
 }
 
-void	key_handler(t_data *vars)
+void	key_handler(t_data *data)
 {
 	static double	angle = M_PI / 120;
 	t_keys			*keys;
 
-	keys = &vars->keys;
+	keys = &data->keys;
 	if (keys->ctrl_left == DOWN)
-		vars->player_speed = SPEED_WALK;
+		data->player_speed = SPEED_WALK;
 	else if (keys->shift_left == DOWN)
-		vars->player_speed = SPEED_SPRINT;
+		data->player_speed = SPEED_SPRINT;
 	else
-		vars->player_speed = SPEED_NORMAL;
+		data->player_speed = SPEED_NORMAL;
 	if (keys->key_w == DOWN)
-		move_straight(vars, vars->player_speed);
+		move_straight(data, data->player_speed);
 	if (keys->key_s == DOWN)
-		move_straight(vars, -vars->player_speed);
+		move_straight(data, -data->player_speed);
 	if (keys->key_a == DOWN)
-		move_sideways(vars, vars->player_speed);
+		move_sideways(data, data->player_speed);
 	if (keys->key_d == DOWN)
-		move_sideways(vars, -vars->player_speed);
+		move_sideways(data, -data->player_speed);
 	if (keys->arrow_left == DOWN)
-		rotate(vars, angle);
+		rotate(data, angle);
 	if (keys->arrow_right == DOWN)
-		rotate(vars, -angle);
+		rotate(data, -angle);
 }
 
-int	mouse_hook(int x, int y, t_data *vars)
+int	mouse_hook(int x, int y, t_data *data)
 {
 	static int		x_mid = WINDOW_WIDTH / 2;
 	static int		y_mid = WINDOW_HEIGHT / 2;
@@ -101,9 +101,9 @@ int	mouse_hook(int x, int y, t_data *vars)
 
 	(void)y;
 	if (x > x_mid)
-		rotate(vars, -angle);
+		rotate(data, -angle);
 	else if (x < x_mid)
-		rotate(vars, angle);
-	mlx_mouse_move(vars->win, x_mid, y_mid);
+		rotate(data, angle);
+	mlx_mouse_move(data->win, x_mid, y_mid);
 	return (0);
 }
