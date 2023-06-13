@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 14:43:27 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 14:55:27 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,20 @@ static void	dda(t_raycast *rc, int **world_map)
 static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 {
 	t_draw	draw;
-	t_img	*tex;
-	char	*add;
+	t_img	*texture;
+	char	*address_texture;
 	int		color;
 
-	tex = get_texture(rc, data);
-	if (tex == NULL)
+	texture = get_texture(rc, data);
+	if (texture == NULL)
 		handle_error(data, "get_texture: no texture found");
-	draw_init(rc, data, &draw, tex);
+	draw_init(rc, data, &draw, texture);
 	while (draw.start < draw.end)
 	{
 		draw.tex_y = (int)draw.tex_pos;
-		add = tex->addr + draw.tex_y * tex->line_length
-			+ draw.tex_x * (tex->bits_per_pixel / 8);
-		color = *(unsigned int *)add;
+		address_texture = texture->addr + draw.tex_y * texture->line_length
+			+ draw.tex_x * (texture->bits_per_pixel / 8);
+		color = *(unsigned int *)address_texture;
 		my_pixel_put(&data->img, x, draw.start, color);
 		draw.tex_pos += draw.step;
 		draw.start++;
