@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/08 15:08:51 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:16:10 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	red_cross(t_data *vars)
 {
 	free_all(vars);
+	//system("leaks cub3D");
 	exit(0);
 	return (0);
 }
@@ -68,7 +69,8 @@ int	key_release(int keycode, t_data *vars)
 
 void	key_handler(t_data *vars)
 {
-	t_keys	*keys;
+	static double	angle = M_PI / 120;
+	t_keys			*keys;
 
 	keys = &vars->keys;
 	if (keys->ctrl_left == DOWN)
@@ -86,21 +88,22 @@ void	key_handler(t_data *vars)
 	if (keys->key_d == DOWN)
 		move_sideways(vars, -vars->player_speed);
 	if (keys->arrow_left == DOWN)
-		rotate(vars, M_PI / 120);
+		rotate(vars, angle);
 	if (keys->arrow_right == DOWN)
-		rotate(vars, -M_PI / 120);
+		rotate(vars, -angle);
 }
 
 int	mouse_hook(int x, int y, t_data *vars)
 {
-	static int	x_mid = WINDOW_WIDTH / 2;
-	static int	y_mid = WINDOW_HEIGHT / 2;
+	static int		x_mid = WINDOW_WIDTH / 2;
+	static int		y_mid = WINDOW_HEIGHT / 2;
+	static double	angle = M_PI / 90;
 
 	(void)y;
 	if (x > x_mid)
-		rotate(vars, -M_PI / 90);
+		rotate(vars, -angle);
 	else if (x < x_mid)
-		rotate(vars, M_PI / 90);
+		rotate(vars, angle);
 	mlx_mouse_move(vars->win, x_mid, y_mid);
 	return (0);
 }

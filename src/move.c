@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 12:26:13 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/07 16:10:14 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:07:43 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	move_straight(t_data *d, double fraction)
 	if (worldMap[(int)(d->player_x)]
 		[(int)(d->player_y + d->direction_y * fraction)] == 0)
 		d->player_y += fraction * d->direction_y;
-	// data->player_x += fraction * data->direction_x;
-	// data->player_y += fraction * data->direction_y;
 }
 
 void	move_sideways(t_data *data, double fraction)
@@ -98,8 +96,6 @@ void	move_sideways(t_data *data, double fraction)
 	if (worldMap[(int)(data->player_x)]
 		[(int)(data->player_y + perpendicular_y * fraction)] == 0)
 		data->player_y += fraction * perpendicular_y;
-	// data->player_x += fraction * perpendicular_x;
-	// data->player_y += fraction * perpendicular_y;
 }
 
 void	rotate(t_data *data, double angle)

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/12 16:43:58 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:14:16 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,6 @@ typedef struct s_draw
 
 void		init_vars(t_data *data);
 
-void		init_hooks(t_data *vars);
 int			red_cross(t_data *vars);
 int			key_press(int keycode, t_data *vars);
 int			key_release(int keycode, t_data *vars);

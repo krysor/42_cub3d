@@ -6,11 +6,13 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/09 14:39:48 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:15:58 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	init_hooks(t_data *vars);
 
 int	main(int argc, char *argv[])
 {
@@ -57,6 +59,14 @@ int	main(int argc, char *argv[])
 	init_vars(&vars);
 	init_hooks(&vars);
 	mlx_loop(vars.mlx);
-	free_all(&vars);
-	return (0);
+}
+
+static void	init_hooks(t_data *vars)
+{
+	mlx_mouse_hide(vars->mlx, vars->win);
+	mlx_hook(vars->win, ON_DESTROY, NO_EVENT_MASK, red_cross, vars);
+	mlx_hook(vars->win, ON_KEYDOWN, NO_EVENT_MASK, key_press, vars);
+	mlx_hook(vars->win, ON_KEYUP, NO_EVENT_MASK, key_release, vars);
+	mlx_hook(vars->win, ON_MOUSEMOVE, NO_EVENT_MASK, mouse_hook, vars);
+	mlx_loop_hook(vars->mlx, render_frame, vars);
 }
