@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:55:55 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/12 16:43:44 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 09:06:59 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	init_vars(t_data *data)
 	data->plane_x = 0;
 	data->plane_y = 0.66;
 	//add all textures initialisations
-	data->tex = mlx_xpm_file_to_image(data->mlx, "xpm/1.xpm", &data->tex_width, &data->tex_height);
-	data->tex_addr = mlx_get_data_addr(data->tex_addr, &data->tex_bits_per_pixel, &data->tex_line_length, &data->tex_endian);
+	data->tex = mlx_xpm_file_to_image(data->mlx, "xpm/4.xpm", &data->tex_width, &data->tex_height);
+	data->tex_addr = mlx_get_data_addr(data->tex, &data->tex_bits_per_pixel, &data->tex_line_length, &data->tex_endian);
 }
 
 void	init_hooks(t_data *vars)

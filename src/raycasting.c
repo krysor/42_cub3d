@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/12 17:04:12 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 09:18:51 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,42 +97,27 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	draw.end = (WINDOW_HEIGHT + draw.line_height) / 2;
 	if (draw.end >= WINDOW_HEIGHT)
 		draw.end = WINDOW_HEIGHT - 1;
-		
 	// int color = RED;
 	// if (rc->side == 1)
 	// 	color /= 2;
 	// while (draw.start < draw.end)
 	// 	my_pixel_put(data, x, draw.start++, color);
-	
 	if (rc->side == 0)
 		draw.wall_x = data->player_y + perp_wall_distance * rc->ray_dir_y;
 	else
 		draw.wall_x = data->player_x + perp_wall_distance * rc->ray_dir_x;
 	draw.wall_x -= floor(draw.wall_x);
-
 	draw.tex_x = (int)(draw.wall_x * (double)data->tex_width);
 	if ((rc->side == 0 && rc->ray_dir_x > 0) || (rc->side == 1 && rc->ray_dir_y < 0)) 
 		draw.tex_x = data->tex_width - draw.tex_x - 1;//width and height missing
-
 	draw.step = 1.0 * data->tex_height / draw.line_height;//width and height missing
-
 	draw.tex_pos = (draw.start + (draw.line_height - WINDOW_HEIGHT) / 2) * draw.step;
 	while (draw.start < draw.end)
 	{
-		draw.tex_y = (int)draw.tex_pos;// & (data->tex_height - 1);//width and height missing
-        printf("tex_y: %d\n", draw.tex_y);
-		//my_pixel_put(data, x, draw.start, *(mlx_get_data_addr(data->tex, &data->bits_per_pixel, &data->line_length, &data->endian) + (data->line_length * draw.tex_y + (int)draw.tex_x * data->bits_per_pixel / 8)));
-		
-		printf("before or after segv1\n");
+		draw.tex_y = (int)draw.tex_pos;
 		char *add = data->tex_addr + (draw.tex_y * data->tex_line_length + (int)draw.tex_x * (data->tex_bits_per_pixel / 8));
-		printf("before or after segv2\n");
-		printf("add as p: %p\n", add);
-		printf("add: %s\n", add);
-		printf("*add = %c\n", *add);
 		int	color = *(unsigned int *)add;
-		printf("before or after segv3\n");
 		my_pixel_put(data, x, draw.start, color);
-
 		draw.tex_pos += draw.step;
 		draw.start++;
 	}
