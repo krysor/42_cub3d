@@ -1,12 +1,12 @@
 CFILES	= 	\
 			main.c \
+			init_vars.c \
 			hooks.c \
 			move.c \
 			utils_free.c \
 			render_frame.c \
 			raycasting.c \
-			init.c \
-			get_color.c
+			init_raycast.c
 			
 SRCS 	= $(addprefix src/, ${CFILES})
 
@@ -17,9 +17,9 @@ NAME	= cub3D
 CC		= cc
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -Os -O2 -O3 #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -Os -O2 -O3 -fsanitize=address
 
-MLX		= -framework OpenGL -framework AppKit  #$^ -o $@
+MLX		= -framework OpenGL -framework AppKit
 
 ${NAME}:	${OBJS}
 			${MAKE} -C libft
@@ -38,7 +38,6 @@ clean:
 fclean:		clean
 			${RM} ${NAME}
 			$(MAKE) fclean -C libft
-			${RM} libmlx.a
 
 re:			fclean all
 

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 11:45:50 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:06:56 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,16 +109,16 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	draw.wall_x -= floor(draw.wall_x);
 
 	t_img	*tex;
-	if (rc->side == 1 && )
+	if (rc->side == 1 && rc->ray_dir_y > 0)
 		tex = &data->tex[0];
-	if (rc->side == 1 && )
+	if (rc->side == 1 && rc->ray_dir_y < 0)
 		tex = &data->tex[1];
-	if (rc->side == 0 && )
+	if (rc->side == 0 && rc->ray_dir_x > 0)
 		tex = &data->tex[2];
-	if (rc->side == 0 && )
+	if (rc->side == 0 && rc->ray_dir_x < 0)
 		tex = &data->tex[3];
 
-	
+
 	draw.tex_x = (int)(draw.wall_x * (double)tex->width);
 	if ((rc->side == 0 && rc->ray_dir_x > 0) || (rc->side == 1 && rc->ray_dir_y < 0)) 
 		draw.tex_x = tex->width - draw.tex_x - 1;//width and height missing
