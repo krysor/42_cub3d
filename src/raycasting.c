@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 14:59:00 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 09:41:33 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../includes/cub3D.h"
 
 static void		dda(t_raycast *rc, int **world_map);
 static void		draw_vertical_stripe(t_raycast *rc, t_data *data, int x);

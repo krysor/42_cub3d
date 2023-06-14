@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 12:26:13 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 10:07:43 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 09:41:31 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../includes/cub3D.h"
 
 void	move_straight(t_data *d, double fraction)
 {

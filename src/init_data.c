@@ -6,11 +6,11 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:11:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 13:39:12 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 09:41:25 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../includes/cub3D.h"
 
 static void	init_mlx(t_data *data);
 static void	init_textures(t_data *data);

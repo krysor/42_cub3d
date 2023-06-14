@@ -6,21 +6,22 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 14:20:19 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 09:51:29 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../libft/libft.h"
+//# include "parsing.h"
 # include "../mlx_opengl/mlx.h"
 # include <stdbool.h>
 # include <limits.h>
 # include <math.h>
 # include <float.h>
 
-# include <stdio.h> //delete later
+# include <stdlib.h>//delete later
+# include <stdio.h>//delete later
 
 //buffer size inside the get_next_line function
 # define BUFFER_SIZE	2000
@@ -145,8 +146,6 @@ typedef struct s_draw
 	int		tex_y;
 
 	double	step;
-
-
 }					t_draw;
 
 void		init_data(t_data *data);

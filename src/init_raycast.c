@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_raycast.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:55:55 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/13 10:12:21 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 09:41:27 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../includes/cub3D.h"
 
 static void	init_delta_dist(t_raycast *rc);
 static void	init_step_and_side_dist(t_raycast *rc, t_data *d);
