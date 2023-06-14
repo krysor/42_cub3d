@@ -6,13 +6,13 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 09:41:23 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:03:30 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-int	red_cross(t_data *data)
+int	red_cross(t_vars *data)
 {
 	free_all(data);
 	//system("leaks cub3D");
@@ -20,7 +20,7 @@ int	red_cross(t_data *data)
 	return (0);
 }
 
-int	key_press(int keycode, t_data *data)
+int	key_press(int keycode, t_vars *data)
 {
 	if (keycode == KEY_W)
 		data->keys.key_w = DOWN;
@@ -41,7 +41,7 @@ int	key_press(int keycode, t_data *data)
 	return (0);
 }
 
-int	key_release(int keycode, t_data *data)
+int	key_release(int keycode, t_vars *data)
 {
 	if (keycode == KEY_W)
 		data->keys.key_w = UP;
@@ -67,7 +67,7 @@ int	key_release(int keycode, t_data *data)
 	return (0);
 }
 
-void	key_handler(t_data *data)
+void	key_handler(t_vars *data)
 {
 	static double	angle = M_PI / 120;
 	t_keys			*keys;
@@ -93,7 +93,7 @@ void	key_handler(t_data *data)
 		rotate(data, -angle);
 }
 
-int	mouse_hook(int x, int y, t_data *data)
+int	mouse_hook(int x, int y, t_vars *data)
 {
 	static int		x_mid = WINDOW_WIDTH / 2;
 	static int		y_mid = WINDOW_HEIGHT / 2;

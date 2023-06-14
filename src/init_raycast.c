@@ -6,16 +6,16 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:55:55 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 09:41:27 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:03:53 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 static void	init_delta_dist(t_raycast *rc);
-static void	init_step_and_side_dist(t_raycast *rc, t_data *d);
+static void	init_step_and_side_dist(t_raycast *rc, t_vars *d);
 
-void	init_raycast(t_raycast *rc, t_data *data, int x)
+void	init_raycast(t_raycast *rc, t_vars *data, int x)
 {
 	rc->camera_x = 2 * x / (double)WINDOW_WIDTH - 1;
 	rc->ray_dir_x = data->direction_x + data->plane_x * rc->camera_x;
@@ -39,7 +39,7 @@ static void	init_delta_dist(t_raycast *rc)
 		rc->delta_dist_y = DBL_MAX;
 }
 
-static void	init_step_and_side_dist(t_raycast *rc, t_data *d)
+static void	init_step_and_side_dist(t_raycast *rc, t_vars *d)
 {
 	if (rc->ray_dir_x < 0)
 	{

@@ -6,17 +6,17 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 09:40:59 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:04:04 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-static void	init_hooks(t_data *data);
+static void	init_hooks(t_vars *data);
 
 int	main(int argc, char *argv[])
 {
-	t_data	data;
+	t_vars	data;
 
 	(void)argc;//delete later
 	(void)argv;
@@ -56,12 +56,12 @@ int	main(int argc, char *argv[])
 	};
 	data.world_map = &worldMap;
 
-	init_data(&data);
+	init_vars(&data);
 	init_hooks(&data);
 	mlx_loop(data.mlx);
 }
 
-static void	init_hooks(t_data *data)
+static void	init_hooks(t_vars *data)
 {
 	mlx_mouse_hide(data->mlx, data->win);
 	mlx_hook(data->win, ON_DESTROY, NO_EVENT_MASK, red_cross, data);
@@ -71,7 +71,7 @@ static void	init_hooks(t_data *data)
 	mlx_loop_hook(data->mlx, render_frame, data);
 }
 
-void	handle_error(t_data *data, char *error_message)
+void	handle_error(t_vars *data, char *error_message)
 {
 	if (error_message != NULL)
 		printf("%s\n", error_message);

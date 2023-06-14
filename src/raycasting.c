@@ -6,19 +6,19 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 09:41:33 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:04:14 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 static void		dda(t_raycast *rc, int **world_map);
-static void		draw_vertical_stripe(t_raycast *rc, t_data *data, int x);
-static t_img	*get_texture(t_raycast *rc, t_data *data);
-static void		draw_init(t_raycast *rc, t_data *data, t_draw *draw,
+static void		draw_vertical_stripe(t_raycast *rc, t_vars *data, int x);
+static t_img	*get_texture(t_raycast *rc, t_vars *data);
+static void		draw_init(t_raycast *rc, t_vars *data, t_draw *draw,
 					t_img *tex);
 
-void	raycasting(t_data *data)
+void	raycasting(t_vars *data)
 {
 	t_raycast	raycast;
 	int			x;
@@ -84,7 +84,7 @@ static void	dda(t_raycast *rc, int **world_map)
 	}
 }
 
-static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
+static void	draw_vertical_stripe(t_raycast *rc, t_vars *data, int x)
 {
 	t_draw	draw;
 	t_img	*texture;
@@ -107,7 +107,7 @@ static void	draw_vertical_stripe(t_raycast *rc, t_data *data, int x)
 	}
 }
 
-static t_img	*get_texture(t_raycast *rc, t_data *data)
+static t_img	*get_texture(t_raycast *rc, t_vars *data)
 {
 	if (rc->side == 1 && rc->ray_dir_y > 0)
 		return (&data->tex[0]);
@@ -120,7 +120,7 @@ static t_img	*get_texture(t_raycast *rc, t_data *data)
 	return (NULL);
 }
 
-static void	draw_init(t_raycast *rc, t_data *data, t_draw *draw, t_img *tex)
+static void	draw_init(t_raycast *rc, t_vars *data, t_draw *draw, t_img *tex)
 {
 	if (rc->side == 0)
 		draw->perp_wall_distance = rc->side_dist_x - rc->delta_dist_x;

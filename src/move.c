@@ -6,13 +6,13 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 12:26:13 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 09:41:31 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:04:08 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	move_straight(t_data *d, double fraction)
+void	move_straight(t_vars *d, double fraction)
 {
 	int worldMap[mapWidth][mapHeight] =
 	{
@@ -50,7 +50,7 @@ void	move_straight(t_data *d, double fraction)
 		d->player_y += fraction * d->direction_y;
 }
 
-void	move_sideways(t_data *data, double fraction)
+void	move_sideways(t_vars *data, double fraction)
 {
 		int worldMap[mapWidth][mapHeight] =
 	{
@@ -98,7 +98,7 @@ void	move_sideways(t_data *data, double fraction)
 		data->player_y += fraction * perpendicular_y;
 }
 
-void	rotate(t_data *data, double angle)
+void	rotate(t_vars *data, double angle)
 {
 	double	cosa;
 	double	sina;

@@ -6,15 +6,15 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:07:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 09:41:35 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:04:16 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-static void	flush_window(t_data *data);
+static void	flush_window(t_vars *data);
 
-int	render_frame(t_data *data)
+int	render_frame(t_vars *data)
 {
 	flush_window(data);
 	key_handler(data);
@@ -23,7 +23,7 @@ int	render_frame(t_data *data)
 	return (0);
 }
 
-static void	flush_window(t_data *data)
+static void	flush_window(t_vars *data)
 {
 	int	x;
 	int	y;

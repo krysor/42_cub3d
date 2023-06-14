@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 09:51:29 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:05:03 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_keys
 	int		ctrl_left;
 }				t_keys;
 
-typedef struct s_data
+typedef struct s_vars
 {
 	void	*mlx;
 	void	*win;
@@ -108,7 +108,7 @@ typedef struct s_data
 	double	plane_y;
 
 	t_img	tex[4];
-}					t_data;
+}					t_vars;
 
 typedef struct s_raycast
 {
@@ -148,25 +148,25 @@ typedef struct s_draw
 	double	step;
 }					t_draw;
 
-void		init_data(t_data *data);
+void		init_vars(t_vars *data);
 
-int			red_cross(t_data *data);
-int			key_press(int keycode, t_data *data);
-int			key_release(int keycode, t_data *data);
-int			mouse_hook(int x, int y, t_data *data);
+int			red_cross(t_vars *data);
+int			key_press(int keycode, t_vars *data);
+int			key_release(int keycode, t_vars *data);
+int			mouse_hook(int x, int y, t_vars *data);
 
-void		move_straight(t_data *data, double fraction);
-void		move_sideways(t_data *data, double fraction);
-void		rotate(t_data *data, double angle);
+void		move_straight(t_vars *data, double fraction);
+void		move_sideways(t_vars *data, double fraction);
+void		rotate(t_vars *data, double angle);
 
-int			render_frame(t_data *data);
-void		key_handler(t_data *data);
-void		raycasting(t_data *data);
-void		init_raycast(t_raycast *rc, t_data *data, int x);
+int			render_frame(t_vars *data);
+void		key_handler(t_vars *data);
+void		raycasting(t_vars *data);
+void		init_raycast(t_raycast *rc, t_vars *data, int x);
 void		my_pixel_put(t_img *img, int x, int y, int color);
 
-void		handle_error(t_data *data, char *error_message);
+void		handle_error(t_vars *data, char *error_message);
 void		free_arr(char **arr);
-void		free_all(t_data *data);
+void		free_all(t_vars *data);
 
 #endif

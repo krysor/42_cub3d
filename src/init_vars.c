@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_data.c                                        :+:      :+:    :+:   */
+/*   init_vars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:11:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 09:41:25 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:12:24 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-static void	init_mlx(t_data *data);
-static void	init_textures(t_data *data);
+static void	init_mlx(t_vars *data);
+static void	init_textures(t_vars *data);
 
-void	init_data(t_data *data)
+void	init_vars(t_vars *data)
 {
 	init_mlx(data);
 
@@ -46,7 +46,7 @@ void	init_data(t_data *data)
 	data->plane_y = 0;
 }
 
-static void	init_mlx(t_data *data)
+static void	init_mlx(t_vars *data)
 {
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
@@ -60,10 +60,10 @@ static void	init_mlx(t_data *data)
 	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
 			&data->img.line_length, &data->img.endian);
 	if (data->img.addr == NULL)
-		handle_error(data, "mlx_get_data_addr failed");
+		handle_error(data, "mlx_get_vars_addr failed");
 }
 
-static void	init_textures(t_data *data)
+static void	init_textures(t_vars *data)
 {
 	int		i;
 	t_img	*img;
@@ -80,7 +80,7 @@ static void	init_textures(t_data *data)
 				&img->bits_per_pixel, &img->line_length, &img->endian);
 		if (img->addr == NULL || img->bits_per_pixel == 0
 			|| img->line_length == 0)
-			handle_error(data, "mlx_get_data_addr failed with texture");
+			handle_error(data, "mlx_get_vars_addr failed with texture");
 		i++;
 	}
 }
