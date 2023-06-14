@@ -1,6 +1,6 @@
 CFILES	= 	\
 			main.c \
-			init_data.c \
+			init_vars.c \
 			hooks.c \
 			move.c \
 			utils_free.c \
