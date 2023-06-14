@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   allocate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:56:38 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 15:09:57 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/14 12:52:42 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,11 @@ void	allocate_map(t_data *data, char **argv)
 	j = 0;
 	k = data->count_map;
 	allocate_map_utils(data, argv);
+	
 	ret = get_next_line(data->fd);
+	if (ret != NULL && ret[ft_strlen(ret) - 1] == '\n')
+        ret[ft_strlen(ret) - 1] = '\0';
+
 	while (ret)
 	{
 		if (i >= data->count_file && k)
@@ -45,7 +49,10 @@ void	allocate_map(t_data *data, char **argv)
 		}
 		i++;
 		free(ret);
+		
 		ret = get_next_line(data->fd);
+		if (ret != NULL && ret[ft_strlen(ret) - 1] == '\n')
+        ret[ft_strlen(ret) - 1] = '\0';
 	}
 	data->map[j] = NULL;
 	close(data->fd);
