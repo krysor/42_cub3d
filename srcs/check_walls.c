@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:00:35 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 13:56:38 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/14 13:59:02 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,27 @@ void	check_gaps(char **map, int count_map)
 	{
 		while (map[i][++j])
 		{
+			printf("bef or after seg 1: i: %d, j: %d\n", i, j);
 			if (map[i][j] == '0')
 			{
+				// printf("bef or after seg 1: i: %d, j: %d\n", i, j);
 				if (i > 0 && is_space(map[i - 1][j]))
-					error_msg("Map error: player can see undefined texture\n");
+					{error_msg("Map error: player can see undefined texture\n");
+				
+				printf("bef or after seg 2\n");}
 				else if (i < count_map - 1 && is_space(map[i + 1][j]))
-					error_msg("Map error: player can see undefined texture\n");
+					{error_msg("Map error: player can see undefined texture\n");
+				
+				printf("bef or after seg 3\n");}
 				else if (j > 0 && is_space(map[i][j - 1]))
-					error_msg("Map error: player can see undefined texture\n");
+					{error_msg("Map error: player can see undefined texture\n");
+				
+				printf("bef or after seg 4\n");}
 				else if (j < (int)ft_strlen(map[i]) - 1
 					&& is_space(map[i][j + 1]))
-					error_msg("Map error: player can see undefined texture\n");
+					{error_msg("Map error: player can see undefined texture\n");
+				
+				printf("bef or after seg 5\n");}
 			}
 		}
 		j = -1;

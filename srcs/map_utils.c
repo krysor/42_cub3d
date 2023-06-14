@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:48:02 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 12:55:16 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 13:40:03 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	line_content(char *ret)
 
 int	is_space(char c)
 {
-	if (!c)
-		error_msg("Map error\n");
+	// if (!c)
+	// 	error_msg("Map error\n");
 	if (c == 9 || (c >= 11 && c <= 13) || c == ' ')
 		return (1);
 	return (0);

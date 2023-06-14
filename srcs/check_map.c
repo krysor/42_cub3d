@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:57:05 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 12:54:42 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 14:38:25 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_wrong_char(char **map, int count_map)
 	j = -1;
 	while (i < count_map - 1 && map[++i])
 	{
-		printf("map[%d]: %s\n", i, map[i]);
+		printf("map[%2d]: %s\n", i, map[i]);
 		
 		while (map[i][++j])
 		{
