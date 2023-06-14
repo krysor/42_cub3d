@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:57:05 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 12:16:15 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 12:32:21 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ void	check_wrong_char(char **map, int count_map)
 	j = -1;
 	while (i < count_map - 1 && map[++i])
 	{
+		printf("map[%d]: %s", i, map[i]);
+
+		
 		while (map[i][++j])
 		{
-			printf("map[i]: %s\n", map[i]);
-
-			if (!is_space(map[i][j]) && map[i][j] != '1' && map[i][j] != '0'
-				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
-					&& map[i][j] != 'W')
-				error_msg("Wrong char in map\n");
+			
+			// if (!is_space(map[i][j]) && map[i][j] != '1' && map[i][j] != '0'
+			// 	&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
+			// 		&& map[i][j] != 'W')
+			// 	error_msg("Wrong char in map\n");
 		}
 		j = -1;
 	}
