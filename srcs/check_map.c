@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:57:05 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 14:06:34 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/14 12:16:15 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	check_wrong_char(char **map, int count_map)
 	{
 		while (map[i][++j])
 		{
+			printf("map[i]: %s\n", map[i]);
+
 			if (!is_space(map[i][j]) && map[i][j] != '1' && map[i][j] != '0'
 				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
 					&& map[i][j] != 'W')

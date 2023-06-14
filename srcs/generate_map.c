@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   generate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:53:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/07 15:09:57 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/14 12:14:14 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	color_check(char **split)
 			error_msg("Empty value in rgb\n");
 		while (split[i][j])
 		{
-			if (!ft_isdigit(split[i][j]) && !is_space(split[i][j]))
+			if (!ft_isdigit(split[i][j]) && !is_space(split[i][j]) && split[i][j] != '\n')
 				error_msg("Non digit value in rgb\n");
 			j++;
 		}
