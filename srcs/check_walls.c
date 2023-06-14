@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:00:35 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 13:59:02 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:13:22 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_gaps(char **map, int count_map)
 	{
 		while (map[i][++j])
 		{
-			printf("bef or after seg 1: i: %d, j: %d\n", i, j);
+			//printf("bef or after seg 1: i: %d, j: %d\n", i, j);
 			if (map[i][j] == '0')
 			{
 				// printf("bef or after seg 1: i: %d, j: %d\n", i, j);

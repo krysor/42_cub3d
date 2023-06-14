@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:56:38 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 14:44:31 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:22:16 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,31 @@ void	allocate_map_utils(t_data *data, char **argv)
 		error_msg("Open error\n");
 }
 
-void	replace_space_by_one(char *map_row)
+void	replace_space_by_one(char *row)
 {
 	int	i;
+	int	k;
 
-	i = -1;
-	while (map_row[++i])
+	if (row == NULL)
+		return ;
+	i = 0;
+	while (row[i])
 	{
-		if (map_row[i] == ' ' && map_row[i] != '0')
-			map_row[i] = '1';
+		if (row[i] != '0' && row[i + 1] == ' ')
+		{
+			k = i + 1;
+			while (row[k] == ' ')
+				k++;
+			if (row[k] == '0' || row[k] == '\0')
+				return ;
+			while (i < k)
+			{	
+				row[i] = '1';
+				i++;
+			}
+		}
+		else
+			i++;
 	}
 }
 
