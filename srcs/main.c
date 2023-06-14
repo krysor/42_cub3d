@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 11:04:04 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:27:20 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,22 @@
 
 static void	init_hooks(t_vars *data);
 
+void ft_parsing(char **argv, t_data *data)
+{
+	check_extension(argv[1]);
+	init_struct(data);
+	generate_map(data, argv);
+	allocate_map(data, argv);
+}
+
 int	main(int argc, char *argv[])
 {
-	t_vars	data;
+	t_vars	vars;
 
-	(void)argc;//delete later
-	(void)argv;
-	// if (argc != 2)
-	// {
-	// 	printf("Error\nInvalid number of arguments\n");
-	// 	return (1);
-	// }
+	if (argc != 2)
+		error_msg("Incorrect amount of arguments\n");
+	ft_parsing(argv, &vars.data);
+	check_map(vars.data.map, &vars.data);
 
 
 	int worldMap[mapWidth][mapHeight] =
@@ -54,11 +59,11 @@ int	main(int argc, char *argv[])
 	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 	};
-	data.world_map = &worldMap;
+	vars.world_map = &worldMap;
 
-	init_vars(&data);
-	init_hooks(&data);
-	mlx_loop(data.mlx);
+	init_vars(&vars);
+	init_hooks(&vars);
+	mlx_loop(vars.mlx);
 }
 
 static void	init_hooks(t_vars *data)

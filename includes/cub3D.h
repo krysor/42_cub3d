@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 11:14:15 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:26:38 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ typedef struct s_keys
 
 typedef struct s_vars
 {
-	t_data	parsing;
-	
+	t_data	data;
+
 	void	*mlx;
 	void	*win;
 	t_img	img;

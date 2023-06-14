@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:01:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 09:50:45 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:36:06 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "../libft/libft.h"
-# include "../get_next_line/get_next_line.h"
+# include "get_next_line.h"
 
 typedef struct s_rgb
 {

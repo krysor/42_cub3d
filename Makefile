@@ -6,9 +6,19 @@ CFILES	= 	\
 			utils_free.c \
 			render_frame.c \
 			raycasting.c \
-			init_raycast.c
+			init_raycast.c \
+			get_next_line_utils.c\
+			get_next_line.c\
+			allocate_map.c\
+			check_extension.c\
+			check_map.c\
+			check_walls.c\
+			generate_map.c\
+			init_struct.c\
+			map_utils.c\
+			utils.c
 			
-SRCS 	= $(addprefix src/, ${CFILES})
+SRCS 	= $(addprefix srcs/, ${CFILES})
 
 OBJS	= ${SRCS:.c=.o}
 
