@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 16:18:28 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 11:36:38 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:41:33 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,23 +105,23 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-#include <stdio.h>
-#include <fcntl.h>
-int main()
-{
-	int fd;
-	fd = open("t.txt", O_RDONLY);
-	char *str;
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	while (str)
-	{
-		str = get_next_line(fd);
-		printf("%s", str);
-		free(str);
-	}
-	//system("leaks out");
-	close(fd);
-	return (0);
-}
+// #include <stdio.h>
+// #include <fcntl.h>
+// int main()
+// {
+// 	int fd;
+// 	fd = open("t.txt", O_RDONLY);
+// 	char *str;
+// 	str = get_next_line(fd);
+// 	printf("%s", str);
+// 	free(str);
+// 	while (str)
+// 	{
+// 		str = get_next_line(fd);
+// 		printf("%s", str);
+// 		free(str);
+// 	}
+// 	//system("leaks out");
+// 	close(fd);
+// 	return (0);
+// }

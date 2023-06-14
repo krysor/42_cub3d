@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:11:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 11:12:24 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:54:03 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	init_vars(t_vars *data)
 {
 	init_mlx(data);
 
-	data->tex[0].path = "xpm/1.xpm";
-	data->tex[1].path = "xpm/2.xpm";
-	data->tex[2].path = "xpm/3.xpm";
-	data->tex[3].path = "xpm/4.xpm";
+	data->tex[0].path = "textures/1.xpm";
+	data->tex[1].path = "textures/2.xpm";
+	data->tex[2].path = "textures/3.xpm";
+	data->tex[3].path = "textures/4.xpm";
 
 	init_textures(data);
 	data->keys.key_w = UP;

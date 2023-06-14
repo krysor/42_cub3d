@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 11:27:20 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/14 11:51:38 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void ft_parsing(char **argv, t_data *data)
 {
 	check_extension(argv[1]);
 	init_struct(data);
-	generate_map(data, argv);
+	browse_map(data, argv);
 	allocate_map(data, argv);
 }
 
