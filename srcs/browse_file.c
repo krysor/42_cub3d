@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:53:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/15 13:54:52 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:31:40 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ void	populate_texture(int idx, t_data *data, int *count, char *ret)
 
 	i = skip_space(ret + 2);
 	data->tex_parsing.texture[idx] = ft_strdup(ret + i + 2);
+	i = ft_strlen(data->tex_parsing.texture[idx]);
+	while (data->tex_parsing.texture[idx][i - 1] == ' '
+		|| data->tex_parsing.texture[idx][i - 1] == '\n')
+	{
+		data->tex_parsing.texture[idx][i - 1] = '\0';
+		i--;
+	}
 	*count += 1;
 }
 

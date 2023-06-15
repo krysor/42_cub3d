@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/15 13:47:42 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:19:33 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void ft_parsing(char **argv, t_data *data)
 	check_extension(argv[1]);
 	init_struct(data);
 	browse_file(data, argv);
+
+	int	i = -1;
+	while (++i < 4)
+		printf("tex %d: %s\n", i, data->tex_parsing.texture[i]);
+
 	allocate_map(data, argv);
 }
 
