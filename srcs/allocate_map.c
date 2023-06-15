@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:56:38 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 15:22:16 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:07:43 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,35 @@ void	allocate_map_utils(t_data *data, char **argv)
 		error_msg("Open error\n");
 }
 
+void	replace_space_by_one(char *row)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	while (row[i])
+	{
+		if (row[i] == '0' && row[i + 1] == ' ')
+			return ;
+		if (row[i] != '0' && row[i + 1] == ' ')
+		{
+			k = i + 1;
+			while (row[k] == ' ')
+				k++;
+			if (row[k] == '0' || row[k] == '\0')
+				return ;
+			while (i < k)
+			{	
+				row[i] = '1';
+				i++;
+			}
+		}
+		else
+			i++;
+	}
+}
+
+/*
 void	replace_space_by_one(char *row)
 {
 	int	i;
@@ -46,10 +75,12 @@ void	replace_space_by_one(char *row)
 				i++;
 			}
 		}
+		// else if (row[i] == ' ' && row[i + 1] == '1')
+		// 	row[i++] = '1';
 		else
 			i++;
 	}
-}
+}*/
 
 /* Read the file with gnl & dup the map in the 2D array */
 void	allocate_map(t_data *data, char **argv)
