@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:48:02 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/15 15:07:03 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:36:05 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	open_file(t_data *data, char **argv)
 
 void	browse_map_cond(char *ret, t_data *data, int *count)
 {
-	while (ret && *ret == ' ')
+	while (ret && is_space(*ret))
 		ret++;
 	if (!ft_strncmp(ret, "NO", 2))
 		populate_texture(0, data, count, ret);
