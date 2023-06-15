@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:53:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/15 15:35:25 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 15:50:09 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void	populate_texture(int idx, t_data *data, int *count, char *ret)
 
 	i = skip_space(ret + 2);
 	data->tex_parsing.texture[idx] = ft_strdup(ret + i + 2);
+	if (data->tex_parsing.texture[idx] == NULL)
+	{
+		free_data(data);
+		error_msg("malloc fail inside ft_strdup inside populate_texture\n");
+	}
 	i = ft_strlen(data->tex_parsing.texture[idx]);
 	while (is_space(data->tex_parsing.texture[idx][i - 1])
 		|| data->tex_parsing.texture[idx][i - 1] == '\n')
@@ -67,6 +72,11 @@ void	populate_rgb(int idx, t_data *data, int *count, char *ret)
 
 	i = skip_space(ret + 1);
 	split = ft_split(ret + i, ',');
+	if (split == NULL)
+	{
+		free_data(data);
+		error_msg("malloc fail inside ft_split inside populate_rgb\n");
+	}
 	color_check(split);
 	data->rgb[idx].r = ft_atoi(split[0]);
 	data->rgb[idx].g = ft_atoi(split[1]);
