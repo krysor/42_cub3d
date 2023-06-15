@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:01:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 11:51:22 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:16:08 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	check_overflow(int r, int g, int b);
 void	populate_texture(int idx, t_data *data, int *count, char *ret);
 void	color_check(char **split);
 void	populate_rgb(int idx, t_data *data, int *count, char *ret);
-void	browse_map(t_data *data, char *argv[]);
+void	browse_file(t_data *data, char **argv);
 void	init_rgb(t_rgb *rgb);
 void	init_texture(t_tex_parsing tex);
 void	init_struct(t_data *data);
@@ -75,5 +75,6 @@ void	open_file(t_data *data, char *argv[]);
 void	browse_map_cond(char *ret, t_data *data, int *count);
 void	free_split(char **split);
 void	free_alloc(t_data *data);
+void	free_data(t_data *data);
 
 #endif

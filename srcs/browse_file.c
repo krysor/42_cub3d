@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:53:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/15 15:50:09 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 17:06:25 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	populate_texture(int idx, t_data *data, int *count, char *ret)
 {
 	int	i;
 
+	if (*(ret + 2) != ' ')
+	{
+		free_data(data);
+		error_msg("Incorrect texture identifier found\n");
+	}
 	i = skip_space(ret + 2);
 	data->tex_parsing.texture[idx] = ft_strdup(ret + i + 2);
 	if (data->tex_parsing.texture[idx] == NULL)
@@ -41,28 +46,57 @@ void	populate_texture(int idx, t_data *data, int *count, char *ret)
 	*count += 1;
 }
 
-void	color_check(char **split)
+void	color_check(char **split, t_data *data)
 {
-	int	i;
-	int	j;
+	int		i;
+	char	*temp;
+
+	i = -1;
+	while (split[++i])
+	{	
+		temp = ft_strtrim(split[i], ' ');
+		free(split[i]);
+		split[i] = temp;
+		if (temp == NULL || *temp == '\0')
+			break ;
+		while (ft_isdigit(*temp))
+			temp++;
+		if (*temp == '\0')
+			break ;
+	}
+	if (i < 3)
+	{
+		free_data(data);
+		error_msg("Error during the parsing of a color line\n");
+	}
+}
+
+/*
+void	color_check(char **split, t_data *data)
+{
+	int		i;
+	int		j;
 
 	i = -1;
 	while (split[++i])
 	{	
 		j = skip_space(split[i]);
 		if (split[i][j] == '\0')
+		{
+			free_data(data);
 			error_msg("Empty value in rgb\n");
+		}
 		while (split[i][j])
 		{
 			if (!ft_isdigit(split[i][j]) && !is_space(split[i][j]) && split[i][j] != '\n')
-				error_msg("Non digit value in rgb\n");
+				error_msg("Non digit value in rgb\n");//freeing
 			j++;
 		}
 		j = 0;
 	}
-	if (i < 3)
-		error_msg("Incorrect format for RGB values\n");
-}
+	if (i < 3)//freeing
+		error_msg("More than 2 commas inside a line containing the rgb values\n");
+}*/
 
 /* Split rgb values, perform check on rgb values, atoi rgb values, free split */
 void	populate_rgb(int idx, t_data *data, int *count, char *ret)
@@ -70,6 +104,11 @@ void	populate_rgb(int idx, t_data *data, int *count, char *ret)
 	int		i;
 	char	**split;
 
+	if (*(ret + 1) != ' ')
+	{
+		free_data(data);
+		error_msg("Incorrect color identifier found\n");
+	}
 	i = skip_space(ret + 1);
 	split = ft_split(ret + i, ',');
 	if (split == NULL)
@@ -77,7 +116,7 @@ void	populate_rgb(int idx, t_data *data, int *count, char *ret)
 		free_data(data);
 		error_msg("malloc fail inside ft_split inside populate_rgb\n");
 	}
-	color_check(split);
+	color_check(split, data);
 	data->rgb[idx].r = ft_atoi(split[0]);
 	data->rgb[idx].g = ft_atoi(split[1]);
 	data->rgb[idx].b = ft_atoi(split[2]);

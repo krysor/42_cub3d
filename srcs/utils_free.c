@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/15 15:46:37 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 16:14:37 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	free_arr(char **arr)
 	free(arr);
 }
 
-void	free_data(t_vars *data)
+void	free_data(t_data *data)
 {
 	int	i;
 
 	free_arr(data->map);
 	i = -1;
-	while (data->tex_parsing->texture[++i])
-		free(data->tex_parsing->texture[i]);
+	while (data->tex_parsing.texture[++i])
+		free(data->tex_parsing.texture[i]);
 }
 
 void	free_all(t_vars *data)
