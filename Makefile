@@ -13,7 +13,7 @@ CFILES	= 	\
 			check_extension.c\
 			check_map.c\
 			check_walls.c\
-			generate_map.c\
+			browse_file.c\
 			init_struct.c\
 			map_utils.c\
 			utils.c

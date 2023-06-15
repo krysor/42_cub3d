@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   generate_map.c                                     :+:      :+:    :+:   */
+/*   browse_file.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:53:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 12:14:14 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:54:52 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	populate_rgb(int idx, t_data *data, int *count, char *ret)
 	*count += 1;
 }
 
-void	browse_map(t_data *data, char **argv)
+void	browse_file(t_data *data, char **argv)
 {
 	char	*ret;
 	int		count;
@@ -77,7 +77,7 @@ void	browse_map(t_data *data, char **argv)
 	count = 0;
 	open_file(data, argv);
 	if (data->fd < 0)
-		error_msg("Open error\n");
+		error_msg("Can't open the input file\n");
 	ret = get_next_line(data->fd);
 	while (ret)
 	{
