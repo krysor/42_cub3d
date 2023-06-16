@@ -6,19 +6,45 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:53:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 10:01:16 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:30:57 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-void	check_overflow(int r, int g, int b)
+void	check_values(char **split, t_data *data)
 {
-	if (r > 255 || g > 255 || b > 255)
-		error_msg("Texture resolution above 255\n");
-	else if (r < 0 || g < 0 || b < 0)
-		error_msg("Texture resolution are negative\n");
+	int		i;
+	char	*msg;
+
+	i = -1;
+	while (++i < 3)
+	{
+		if (ft_strlen(split[i]) == 0 || ft_strlen(split[i]) > 3)
+		{
+			msg = "Input color rgb value is not between 0 and 255\n";
+			break ;
+		}
+		if (ft_strlen(split[i]) == 3 && ft_strncmp("255", split[i], 3) < 0)
+		{
+			msg = "Input color rgb value is higher than 255\n";
+			break ;
+		}
+	}
+	if (i < 3)
+	{
+		free_data(data);
+		error_msg(msg);
+	}
 }
+
+// void	check_overflow(int r, int g, int b)
+// {
+// 	if (r > 255 || g > 255 || b > 255)
+// 		error_msg("Texture resolution above 255\n");
+// 	else if (r < 0 || g < 0 || b < 0)
+// 		error_msg("Texture resolution are negative\n");
+// }
 
 void	populate_texture(int idx, t_data *data, int *count, char *ret)
 {
@@ -74,33 +100,6 @@ void	color_check(char **split, t_data *data)
 	}
 }
 
-/*
-void	color_check(char **split, t_data *data)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (split[++i])
-	{	
-		j = skip_space(split[i]);
-		if (split[i][j] == '\0')
-		{
-			free_data(data);
-			error_msg("Empty value in rgb\n");
-		}
-		while (split[i][j])
-		{
-			if (!ft_isdigit(split[i][j]) && !is_space(split[i][j]) && split[i][j] != '\n')
-				error_msg("Non digit value in rgb\n");//freeing
-			j++;
-		}
-		j = 0;
-	}
-	if (i < 3)//freeing
-		error_msg("More than 2 commas inside a line containing the rgb values\n");
-}*/
-
 /* Split rgb values, perform check on rgb values, atoi rgb values, free split */
 void	populate_rgb(int idx, t_data *data, int *count, char *ret)
 {
@@ -120,10 +119,10 @@ void	populate_rgb(int idx, t_data *data, int *count, char *ret)
 		error_msg("malloc fail inside ft_split inside populate_rgb\n");
 	}
 	color_check(split, data);
+	check_values(split, data);
 	data->rgb[idx].r = ft_atoi(split[0]);
 	data->rgb[idx].g = ft_atoi(split[1]);
 	data->rgb[idx].b = ft_atoi(split[2]);
-	check_overflow(data->rgb[idx].r, data->rgb[idx].g, data->rgb[idx].b);
 	free_split(split);
 	*count += 1;
 }
