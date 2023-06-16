@@ -6,13 +6,13 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:48:02 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/15 15:36:05 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:20:37 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-int	line_content(char *ret)
+int	line_is_empty(char *ret)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ int	line_content(char *ret)
 	while (ret[i] && (ret[i] == 9 || (ret[i] >= 11 && ret[i] <= 13)
 			|| ret[i] == ' '))
 		i++;
-	if (!ret[i])
+	if (ret[i] == '\0')
 		return (1);
 	return (0);
 }
@@ -69,9 +69,12 @@ void	browse_map_cond(char *ret, t_data *data, int *count)
 		populate_rgb(1, data, count, ret);
 	else
 	{
-		if (!line_content(ret) && *count == 6)
+		if (line_is_empty(ret) == 0 && *count == 6)
 			data->count_map++;
-		if (line_content_map(ret) && *count != 6)
-			error_msg("Map error\n");
+		if (line_is_map(ret) && *count != 6)
+		{
+			free_data(data);
+			error_msg("The map starts before the texture and color lines\n");
+		}
 	}
 }

@@ -6,13 +6,13 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:57:05 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 14:38:25 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:06:21 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/parsing.h"
 
-int	line_content_map(char *ret)
+int	line_is_map(char *ret)
 {
 	int	i;
 
@@ -78,7 +78,7 @@ void	check_empty_line(char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (line_content(map[i]))
+		if (line_is_empty(map[i]))
 			error_msg("Empty line in map\n");
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/15 16:14:37 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:45:06 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	free_data(t_data *data)
 	i = -1;
 	while (data->tex_parsing.texture[++i])
 		free(data->tex_parsing.texture[i]);
+	if (data->fd > -1)
+		close(data->fd);
 }
 
 void	free_all(t_vars *data)

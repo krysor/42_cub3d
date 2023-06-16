@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/16 10:20:17 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:30:38 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void ft_parsing(char **argv, t_data *data)
 	// while (++i < 4)
 	// 	printf("tex %d: %s\n", i, data->tex_parsing.texture[i]);
 
-	int i = -1;
-	while (++i < 2)
-		printf("rgb[%d]: %d, %d, %d\n", i, data->rgb[i].r, data->rgb[i].g, data->rgb[i].b);
+	// int i = -1;
+	// while (++i < 2)
+	// 	printf("rgb[%d]: %d, %d, %d\n", i, data->rgb[i].r, data->rgb[i].g, data->rgb[i].b);
 
 	allocate_map(data, argv);
 }
