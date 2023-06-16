@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:56:38 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 15:33:24 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:00:24 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,26 @@ void	replace_space_by_one(char *row)
 	}
 }*/
 
+void	copy_line_to_map(t_data *data, char *ret, int *j_pnt, int *k_pnt)
+{
+	int	i_ret_last;
+	int	j;
+
+	i_ret_last = ft_strlen(ret) - 1;
+	if (ret[i_ret_last] == '\n')
+		ret[i_ret_last] = '\0';
+	j = *j_pnt;
+	data->map[j] = ft_strdup(ret);
+	if (data->map[j] == NULL)
+	{
+		free(ret);
+		free_data(data);
+		error_msg("Malloc fail inside allocate_map\n");
+	}
+	(*j_pnt)++;
+	(*k_pnt)--;
+}
+
 /* Read the file with gnl & dup the map in the 2D array */
 void	allocate_map(t_data *data, char **argv)
 {
@@ -103,14 +123,8 @@ void	allocate_map(t_data *data, char **argv)
 	ret = get_next_line(data->fd);
 	while (ret)
 	{
-		if (ret[ft_strlen(ret) - 1] == '\n')
-			ret[ft_strlen(ret) - 1] = '\0';
-		printf("ret: %s\n", ret);
-		if (i >= data->i_line_map_start && k)
-		{
-			data->map[j++] = ft_strdup(ret);
-			k--;
-		}
+		if (i >= data->i_line_map_start && k > 0)
+			copy_line_to_map(data, ret, &j, &k);
 		i++;
 		free(ret);
 		ret = get_next_line(data->fd);
@@ -118,50 +132,3 @@ void	allocate_map(t_data *data, char **argv)
 	data->map[j] = NULL;
 	close(data->fd);
 }
-
-/*
-void	allocate_map(t_data *data, char **argv)
-{
-	char	*ret;
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	j = 0;
-	k = data->len_map;
-	allocate_map_utils(data, argv);
-	
-	ret = get_next_line(data->fd);
-
-
-	if (ret != NULL && ret[ft_strlen(ret) - 1] == '\n')
-		ret[ft_strlen(ret) - 1] = '\0';
-	// if (ret != NULL)	
-	// 	replace_space_by_one(ret);
-	
-
-	while (ret)
-	{
-		printf("ret: %s\n", ret);
-		
-		if (i >= data->i_line_map_start && k)
-		{
-			data->map[j++] = ft_strdup(ret);
-			k--;
-		}
-		i++;
-		free(ret);
-		
-		ret = get_next_line(data->fd);
-
-
-		
-		if (ret != NULL && ret[ft_strlen(ret) - 1] == '\n')
-			ret[ft_strlen(ret) - 1] = '\0';
-		// if (ret != NULL)	
-		// 	replace_space_by_one(ret);
-	}
-	data->map[j] = NULL;
-	close(data->fd);
-}*/

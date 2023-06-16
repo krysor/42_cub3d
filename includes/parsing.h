@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:01:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:47:15 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:31:52 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_tex_parsing
 typedef struct s_data
 {
 	int				fd;
-	int				count_file;
+	int				i_line_map_start;
 	int				len_map;
 	char			**map;
 	t_rgb			rgb[2];

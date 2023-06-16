@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/16 11:30:38 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:41:55 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	main(int argc, char *argv[])
 		error_msg("Incorrect amount of arguments\n");
 	ft_parsing(argv, &vars.data);
 	check_map(vars.data.map, &vars.data);
+
+	return (69);
 
 	// int	i = -1;
 	// while (vars.data.map[++i])
