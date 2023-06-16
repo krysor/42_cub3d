@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:00:35 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:47:38 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:44:45 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	check_delim_char(char **map)
 }
 
 /* Check if the 1st and the nth line of the map are 1 only */
-void	check_delim_line(char **map, int len_map)
+void	check_delim_line(char **map, int len_map, t_data *data)
 {
 	int	i;
 
@@ -90,12 +90,18 @@ void	check_delim_line(char **map, int len_map)
 	while (map[0][++i])
 	{
 		if (map[0][i] != '1' && !is_space(map[0][i]))
+		{
+			free_data(data);
 			error_msg("Map error in first line\n");
+		}
 	}
 	i = -1;
 	while (map[len_map - 1][++i])
 	{
 		if (map[len_map - 1][i] != '1' && !is_space(map[len_map - 1][i]))
+		{
+			free_data(data);
 			error_msg("Map error in last line\n");
+		}
 	}
 }

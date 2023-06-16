@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:57:05 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:47:24 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 16:47:52 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	line_is_map(char *ret)
 	return (0);
 }
 
-void	check_wrong_char(char **map, int len_map)
+void	check_wrong_char(char **map, int len_map, t_data *data)
 {
 	int	i;
 	int	j;
@@ -34,21 +34,21 @@ void	check_wrong_char(char **map, int len_map)
 	j = -1;
 	while (i < len_map - 1 && map[++i])
 	{
-		printf("map[%2d]: %s\n", i, map[i]);
-		
 		while (map[i][++j])
 		{
-			
 			if (!is_space(map[i][j]) && map[i][j] != '1' && map[i][j] != '0'
 				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
 					&& map[i][j] != 'W')
-				error_msg("Wrong char in map\n");
+			{
+				free_data(data);
+				error_msg("Wrong char in map\n");	
+			}
 		}
 		j = -1;
 	}
 }
 
-void	check_dup_char(char **map)
+void	check_dup_char(char **map, t_data *data)
 {
 	int	i;
 	int	j;
@@ -67,11 +67,14 @@ void	check_dup_char(char **map)
 		}
 		j = -1;
 	}
-	if (count > 1 || count < 1)
-		error_msg("Incorrect number of player\n");
+	if (count != 1)
+	{
+		free_data(data);
+		error_msg("Incorrect number of players\n");
+	}
 }
 
-void	check_empty_line(char **map)
+void	check_empty_line(char **map, t_data *data)
 {
 	int	i;
 
@@ -79,17 +82,21 @@ void	check_empty_line(char **map)
 	while (map[i])
 	{
 		if (line_is_empty(map[i]))
+		{
+			free_data(data);
 			error_msg("Empty line in map\n");
+		}
 		i++;
 	}
 }
 
 void	check_map(char **map, t_data *data)
 {
-	check_wrong_char(map, data->len_map);
-	check_dup_char(map);
-	check_empty_line(map);
-	check_delim_line(map, data->len_map);
+	check_wrong_char(map, data->len_map, data);
+	check_dup_char(map, data);
+	check_empty_line(map, data);
+	check_delim_line(map, data->len_map, data);
+	//FROM HERE
 	check_delim_char(map);
 	check_gaps(map, data->len_map);
 }
