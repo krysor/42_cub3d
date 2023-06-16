@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:48:02 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:20:37 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:47:35 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	browse_map_cond(char *ret, t_data *data, int *count)
 	else
 	{
 		if (line_is_empty(ret) == 0 && *count == 6)
-			data->count_map++;
+			data->len_map++;
 		if (line_is_map(ret) && *count != 6)
 		{
 			free_data(data);

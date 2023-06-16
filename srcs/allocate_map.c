@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:56:38 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/15 11:07:43 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:47:21 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* Allocate 2D array for the map */
 void	allocate_map_utils(t_data *data, char **argv)
 {
-	data->map = malloc(sizeof(char *) * (data->count_map + 1));
+	data->map = malloc(sizeof(char *) * (data->len_map + 1));
 	if (!data->map)
 		error_msg("Malloc error\n");
 	open_file(data, argv);
@@ -92,7 +92,7 @@ void	allocate_map(t_data *data, char **argv)
 
 	i = 0;
 	j = 0;
-	k = data->count_map;
+	k = data->len_map;
 	allocate_map_utils(data, argv);
 	
 	ret = get_next_line(data->fd);

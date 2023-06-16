@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:53:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:29:20 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:47:52 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void	browse_file(t_data *data, char **argv)
 	while (ret)
 	{
 		browse_map_cond(ret, data, &count);
-		if (data->count_map == 0)
+		if (data->len_map == 0)
 			data->count_file++;
 		free(ret);
 		ret = get_next_line(data->fd);

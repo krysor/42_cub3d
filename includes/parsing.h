@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:01:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 09:55:54 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:47:15 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_data
 {
 	int				fd;
 	int				count_file;
-	int				count_map;
+	int				len_map;
 	char			**map;
 	t_rgb			rgb[2];
 	t_tex_parsing	tex_parsing;
@@ -51,15 +51,15 @@ void	allocate_map_utils(t_data *data, char *argv[]);
 void	allocate_map(t_data *data, char *argv[]);
 void	error_msg(char *str);
 void	check_extension(char *str);
-int		line_content_map(char *ret);
-void	check_wrong_char(char **map, int count_map);
+int		line_is_map(char *ret);
+void	check_wrong_char(char **map, int len_map);
 void	check_dup_char(char **map);
 void	check_empty_line(char **map);
 void	check_map(char **map, t_data *data);
-void	check_gaps(char **map, int count_map);
+void	check_gaps(char **map, int len_map);
 int		check_lastchar(char *str);
 void	check_delim_char(char **map);
-void	check_delim_line(char **map, int count_map);
+void	check_delim_line(char **map, int len_map);
 void	check_overflow(int r, int g, int b);
 void	populate_texture(int idx, t_data *data, int *count, char *ret);
 void	color_check(char **split, t_data *data);
@@ -68,7 +68,7 @@ void	browse_file(t_data *data, char **argv);
 void	init_rgb(t_rgb *rgb);
 void	init_texture(t_tex_parsing tex);
 void	init_struct(t_data *data);
-int		line_content(char *ret);
+int		line_is_empty(char *ret);
 int		is_space(char c);
 int		skip_space(char *ret);
 void	open_file(t_data *data, char *argv[]);

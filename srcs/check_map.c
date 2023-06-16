@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:57:05 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:06:21 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:47:24 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int	line_is_map(char *ret)
 	return (0);
 }
 
-void	check_wrong_char(char **map, int count_map)
+void	check_wrong_char(char **map, int len_map)
 {
 	int	i;
 	int	j;
 
 	i = -1;
 	j = -1;
-	while (i < count_map - 1 && map[++i])
+	while (i < len_map - 1 && map[++i])
 	{
 		printf("map[%2d]: %s\n", i, map[i]);
 		
@@ -86,10 +86,10 @@ void	check_empty_line(char **map)
 
 void	check_map(char **map, t_data *data)
 {
-	check_wrong_char(map, data->count_map);
+	check_wrong_char(map, data->len_map);
 	check_dup_char(map);
 	check_empty_line(map);
-	check_delim_line(map, data->count_map);
+	check_delim_line(map, data->len_map);
 	check_delim_char(map);
-	check_gaps(map, data->count_map);
+	check_gaps(map, data->len_map);
 }

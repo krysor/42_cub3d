@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:00:35 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/14 15:13:22 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:47:38 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* Check if a '0' is not surrounded by a space or a non-existing texture */
 
-void	check_gaps(char **map, int count_map)
+void	check_gaps(char **map, int len_map)
 {
 	int	i;
 	int	j;
@@ -33,7 +33,7 @@ void	check_gaps(char **map, int count_map)
 					{error_msg("Map error: player can see undefined texture\n");
 				
 				printf("bef or after seg 2\n");}
-				else if (i < count_map - 1 && is_space(map[i + 1][j]))
+				else if (i < len_map - 1 && is_space(map[i + 1][j]))
 					{error_msg("Map error: player can see undefined texture\n");
 				
 				printf("bef or after seg 3\n");}
@@ -82,7 +82,7 @@ void	check_delim_char(char **map)
 }
 
 /* Check if the 1st and the nth line of the map are 1 only */
-void	check_delim_line(char **map, int count_map)
+void	check_delim_line(char **map, int len_map)
 {
 	int	i;
 
@@ -93,9 +93,9 @@ void	check_delim_line(char **map, int count_map)
 			error_msg("Map error in first line\n");
 	}
 	i = -1;
-	while (map[count_map - 1][++i])
+	while (map[len_map - 1][++i])
 	{
-		if (map[count_map - 1][i] != '1' && !is_space(map[count_map - 1][i]))
+		if (map[len_map - 1][i] != '1' && !is_space(map[len_map - 1][i]))
 			error_msg("Map error in last line\n");
 	}
 }
