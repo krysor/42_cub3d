@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:48:02 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:47:35 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:56:16 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ void	open_file(t_data *data, char **argv)
 {
 	data->fd = open(argv[1], O_RDONLY);
 	if (data->fd < 0)
+	{
+		free_data(data);
 		error_msg("Can't open the input file\n");
+	}
 }
 
 void	browse_map_cond(char *ret, t_data *data, int *count)

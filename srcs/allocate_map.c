@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:56:38 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:47:21 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:56:37 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@ void	allocate_map_utils(t_data *data, char **argv)
 {
 	data->map = malloc(sizeof(char *) * (data->len_map + 1));
 	if (!data->map)
+	{
+		free_data(data);
 		error_msg("Malloc error\n");
+	}
 	open_file(data, argv);
 	if (data->fd < 0)
+	{
+		free_data(data);
 		error_msg("Open error\n");
+	}
 }
 
 void	replace_space_by_one(char *row)
