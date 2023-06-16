@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:01:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/15 16:16:08 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 09:55:54 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	check_delim_char(char **map);
 void	check_delim_line(char **map, int count_map);
 void	check_overflow(int r, int g, int b);
 void	populate_texture(int idx, t_data *data, int *count, char *ret);
-void	color_check(char **split);
+void	color_check(char **split, t_data *data);
 void	populate_rgb(int idx, t_data *data, int *count, char *ret);
 void	browse_file(t_data *data, char **argv);
 void	init_rgb(t_rgb *rgb);

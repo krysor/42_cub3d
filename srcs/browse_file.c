@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:53:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/15 17:06:25 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 10:01:16 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ void	color_check(char **split, t_data *data)
 	i = -1;
 	while (split[++i])
 	{	
-		temp = ft_strtrim(split[i], ' ');
+		temp = ft_strtrim(split[i], " \n");
+		if (temp == NULL || *temp == '\0')
+		{
+			free(temp);
+			break ;
+		}
 		free(split[i]);
 		split[i] = temp;
-		if (temp == NULL || *temp == '\0')
-			break ;
 		while (ft_isdigit(*temp))
 			temp++;
-		if (*temp == '\0')
+		if (*temp != '\0')
 			break ;
 	}
 	if (i < 3)
