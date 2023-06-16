@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:48:02 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:56:16 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:35:49 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,26 @@ int	line_is_empty(char *ret)
 
 	i = 0;
 	while (ret[i] && (ret[i] == 9 || (ret[i] >= 11 && ret[i] <= 13)
-			|| ret[i] == ' '))
+			|| ret[i] == ' ' || ret[i] == '\n'))
 		i++;
 	if (ret[i] == '\0')
 		return (1);
 	return (0);
 }
+
+/*
+int	line_is_empty(char *ret)
+{
+	int	i;
+
+	i = 0;
+	while (ret[i] && (ret[i] == 9 || (ret[i] >= 11 && ret[i] <= 13)
+			|| ret[i] == ' '))
+		i++;
+	if (ret[i] == '\0')
+		return (1);
+	return (0);
+}*/
 
 int	is_space(char c)
 {

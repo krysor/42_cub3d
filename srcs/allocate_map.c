@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:56:38 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:56:37 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:33:24 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	allocate_map_utils(t_data *data, char **argv)
 	if (!data->map)
 	{
 		free_data(data);
-		error_msg("Malloc error\n");
+		error_msg("Malloc error in allocate_map_utils\n");
 	}
 	open_file(data, argv);
 	if (data->fd < 0)
 	{
 		free_data(data);
-		error_msg("Open error\n");
+		error_msg("Open error in allocate_map_utils\n");
 	}
 }
 
@@ -100,17 +100,52 @@ void	allocate_map(t_data *data, char **argv)
 	j = 0;
 	k = data->len_map;
 	allocate_map_utils(data, argv);
+	ret = get_next_line(data->fd);
+	while (ret)
+	{
+		if (ret[ft_strlen(ret) - 1] == '\n')
+			ret[ft_strlen(ret) - 1] = '\0';
+		printf("ret: %s\n", ret);
+		if (i >= data->i_line_map_start && k)
+		{
+			data->map[j++] = ft_strdup(ret);
+			k--;
+		}
+		i++;
+		free(ret);
+		ret = get_next_line(data->fd);
+	}
+	data->map[j] = NULL;
+	close(data->fd);
+}
+
+/*
+void	allocate_map(t_data *data, char **argv)
+{
+	char	*ret;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = data->len_map;
+	allocate_map_utils(data, argv);
 	
 	ret = get_next_line(data->fd);
+
+
 	if (ret != NULL && ret[ft_strlen(ret) - 1] == '\n')
 		ret[ft_strlen(ret) - 1] = '\0';
-	if (ret != NULL)	
-		replace_space_by_one(ret);
+	// if (ret != NULL)	
+	// 	replace_space_by_one(ret);
 	
 
 	while (ret)
 	{
-		if (i >= data->count_file && k)
+		printf("ret: %s\n", ret);
+		
+		if (i >= data->i_line_map_start && k)
 		{
 			data->map[j++] = ft_strdup(ret);
 			k--;
@@ -124,10 +159,9 @@ void	allocate_map(t_data *data, char **argv)
 		
 		if (ret != NULL && ret[ft_strlen(ret) - 1] == '\n')
 			ret[ft_strlen(ret) - 1] = '\0';
-		if (ret != NULL)	
-			replace_space_by_one(ret);
+		// if (ret != NULL)	
+		// 	replace_space_by_one(ret);
 	}
 	data->map[j] = NULL;
 	close(data->fd);
-}
-
+}*/

@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:10:29 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 11:47:30 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/16 15:32:11 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	init_texture(t_tex_parsing tex)
 void	init_struct(t_data *data)
 {
 	data->fd = 0;
-	data->count_file = 0;
+	data->i_line_map_start = 0;
 	data->len_map = 0;
 	data->map = NULL;
 	init_rgb(data->rgb);
