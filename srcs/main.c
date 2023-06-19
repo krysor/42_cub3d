@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/19 14:20:55 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:31:04 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_hooks(t_vars *data);
 
-void ft_parsing(char **argv, t_data *data)
+void	ft_parsing(char **argv, t_data *data)
 {
 	check_extension(argv[1]);
 	init_struct(data);
@@ -31,7 +31,10 @@ int	main(int argc, char *argv[])
 		error_msg("Incorrect amount of arguments\n");
 	ft_parsing(argv, &vars.data);
 	
-	return (69);
+	
+	vars.color_ceiling = vars.data.rgb[1].r << 16 | vars.data.rgb[1].g << 8 | vars.data.rgb[1].b;
+	vars.color_floor = vars.data.rgb[0].r << 16 | vars.data.rgb[0].g << 8 | vars.data.rgb[0].b;
+
 	//add a function that
 	//processes puts all variables into the cub3d struct
 	//possibly reallocates the map
