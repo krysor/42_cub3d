@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:00:35 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/19 12:17:49 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:08:10 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	check_gaps(char **map, int len_map, t_data *data)
 			if (map[i][j] == '0' && check_gaps_conditions(map, len_map, i, j))
 			{
 				free_data(data);
-				error_msg("Map error: player can see undefined texture\n");	
+				error_msg("Map error: player can see undefined texture\n");
 			}
 		}
 		j = -1;
@@ -58,7 +58,7 @@ int	check_lastchar(char *str)
 	if (is_space(str[i]))
 	{
 		while (i > 0 && is_space(str[i]))
-			i--;	
+			i--;
 	}
 	if (str[i] != '1' && !is_space(str[i]))
 		return (0);
