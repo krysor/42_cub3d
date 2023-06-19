@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:57:05 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/19 12:19:16 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:07:37 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	check_wrong_char(char **map, int len_map, t_data *data)
 					&& map[i][j] != 'W')
 			{
 				free_data(data);
-				error_msg("Wrong char in map\n");	
+				error_msg("Wrong char in map\n");
 			}
 		}
 		j = -1;
