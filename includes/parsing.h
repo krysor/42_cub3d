@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 12:01:14 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/19 11:02:14 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:54:42 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	color_check(char **split, t_data *data);
 void	populate_rgb(int idx, t_data *data, int *count, char *ret);
 void	browse_file(t_data *data, char **argv);
 void	init_rgb(t_rgb *rgb);
-void	init_texture(t_tex_parsing tex);
+void	init_texture(t_tex_parsing *tex);
 void	init_struct(t_data *data);
 int		line_is_empty(char *ret);
 int		is_space(char c);

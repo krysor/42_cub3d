@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:10:29 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/19 12:34:03 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 13:54:23 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	init_rgb(t_rgb *rgb)
 	}
 }
 
-void	init_texture(t_tex_parsing tex)
+void	init_texture(t_tex_parsing *tex)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
-		tex.texture[i++] = NULL;
+		tex->texture[i++] = NULL;
 }
 
 void	init_struct(t_data *data)
@@ -42,7 +42,7 @@ void	init_struct(t_data *data)
 	data->len_map = 0;
 	data->map = NULL;
 	init_rgb(data->rgb);
-	init_texture(data->tex_parsing);
+	init_texture(&data->tex_parsing);
 	data->x = 0;
 	data->y = 0;
 }
