@@ -6,15 +6,15 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 11:03:30 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:21:39 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-int	red_cross(t_vars *data)
+int	red_cross(t_vars *vars)
 {
-	free_all(data);
+	free_all(vars);
 	//system("leaks cub3D");
 	exit(0);
 	return (0);
