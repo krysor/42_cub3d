@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_vars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:11:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/19 14:11:51 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/19 15:59:22 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 static void	init_mlx(t_vars *vars);
 static void	init_textures(t_vars *vars);
+static void	init_colors(t_vars *vars);
 
 void	init_vars(t_vars *vars)
 {
 	init_mlx(vars);
-
-	vars->tex[0].path = vars->data.tex_parsing.texture[0];
-	vars->tex[1].path = vars->data.tex_parsing.texture[1];
-	vars->tex[2].path = vars->data.tex_parsing.texture[2];
-	vars->tex[3].path = vars->data.tex_parsing.texture[3];
 	init_textures(vars);
+	init_colors(vars);
 	vars->keys.key_w = UP;
 	vars->keys.key_a = UP;
 	vars->keys.key_s = UP;
@@ -70,6 +67,7 @@ static void	init_textures(t_vars *vars)
 	i = 0;
 	while (i < 4)
 	{
+		vars->tex[i].path = vars->data.tex_parsing.texture[i];
 		img = &vars->tex[i];
 		img->img = mlx_xpm_file_to_image(vars->mlx,
 				img->path, &img->width, &img->height);
@@ -82,4 +80,12 @@ static void	init_textures(t_vars *vars)
 			handle_error(vars, "mlx_get_data_addr failed with texture");
 		i++;
 	}
+}
+
+static void	init_colors(t_vars *vars)
+{
+	vars->color_ceiling = vars->data.rgb[1].r << 16
+		| vars->data.rgb[1].g << 8 | vars->data.rgb[1].b;
+	vars->color_floor = vars->data.rgb[0].r << 16
+		| vars->data.rgb[0].g << 8 | vars->data.rgb[0].b;
 }

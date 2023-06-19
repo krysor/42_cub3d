@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/19 15:04:32 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:47:17 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,57 @@ void	ft_parsing(char **argv, t_data *data)
 	check_map(data->map, data);
 }
 
+void	spaces_to_ones(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == ' ')
+				map[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
+
+void	equalize_length(char **map, t_data *data)
+{
+	size_t	len_max;
+	int		i;
+	char	*row_new;
+
+	i = -1;
+	len_max = -1;
+	while (map[++i])
+	{
+		if (ft_strlen(map[i]) > len_max)
+			len_max = ft_strlen(map[i]);
+	}
+	i = -1;
+	while (map[++i])
+	{
+		if (ft_strlen(map[i]) == len_max)
+			continue ;
+		row_new = malloc(sizeof(char) * (len_max + 1));//add malloc protection
+		if (row_new == NULL)
+		{
+			free_data(data);
+			error_msg("Malloc fail insisde equalize_length\n");
+		}
+		ft_memset(row_new, '1', len_max);
+		row_new[len_max] = '\0';
+		ft_memcpy(row_new, map[i], ft_strlen(map[i]));
+		free(map[i]);
+		map[i] = row_new;
+	}	
+}
+
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
@@ -31,11 +82,10 @@ int	main(int argc, char *argv[])
 		error_msg("Incorrect amount of arguments\n");
 	ft_parsing(argv, &vars.data);
 
-	vars.color_ceiling = vars.data.rgb[1].r << 16
-		| vars.data.rgb[1].g << 8 | vars.data.rgb[1].b;
-	vars.color_floor = vars.data.rgb[0].r << 16
-		| vars.data.rgb[0].g << 8 | vars.data.rgb[0].b;
-
+	
+	spaces_to_ones(vars.data.map);
+	equalize_length(vars.data.map, &vars.data);
+	
 	//add a function that
 	//processes puts all variables into the cub3d struct
 	//possibly reallocates the map
