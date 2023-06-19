@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:07:17 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 11:04:16 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 14:29:41 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,25 @@ static void	flush_window(t_vars *data)
 	int	x;
 	int	y;
 	int	y_mid;
+	int	color_ceiling;
+	int	color_floor;
 
+	color_ceiling = data->color_ceiling;
 	y = 0;
 	y_mid = WINDOW_HEIGHT / 2;
 	while (y < y_mid)
 	{
 		x = 0;
 		while (x < WINDOW_WIDTH)
-			my_pixel_put(&data->img, x++, y, WHITE);
+			my_pixel_put(&data->img, x++, y, color_ceiling);
 		y++;
 	}
+	color_floor = data->color_floor;
 	while (y < WINDOW_HEIGHT)
 	{
 		x = 0;
 		while (x < WINDOW_WIDTH)
-			my_pixel_put(&data->img, x++, y, BLACK);
+			my_pixel_put(&data->img, x++, y, color_floor);
 		y++;
 	}
 }

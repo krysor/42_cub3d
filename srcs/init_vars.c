@@ -12,56 +12,57 @@
 
 #include "../includes/cub3D.h"
 
-static void	init_mlx(t_vars *data);
-static void	init_textures(t_vars *data);
+static void	init_mlx(t_vars *vars);
+static void	init_textures(t_vars *vars);
 
-void	init_vars(t_vars *data)
+void	init_vars(t_vars *vars)
 {
-	init_mlx(data);
-	data->tex[0].path = "textures/1.xpm";
-	data->tex[1].path = "textures/2.xpm";
-	data->tex[2].path = "textures/3.xpm";
-	data->tex[3].path = "textures/4.xpm";
-	init_textures(data);
-	data->keys.key_w = UP;
-	data->keys.key_a = UP;
-	data->keys.key_s = UP;
-	data->keys.key_d = UP;
-	data->keys.ctrl_left = UP;
-	data->keys.shift_left = UP;
-	data->keys.arrow_left = UP;
-	data->keys.arrow_right = UP;
-	data->player_x = 22;
-	data->player_y = 12;
-	data->player_speed = 0.05;
-	// data->direction_x = -1;
-	// data->direction_y = 0;
-	// data->plane_x = 0;
-	// data->plane_y = 0.66;
-	data->direction_x = 0;
-	data->direction_y = 1;
-	data->plane_x = 0.66;
-	data->plane_y = 0;
+	init_mlx(vars);
+
+	vars->tex[0].path = vars->data.tex_parsing.texture[0];
+	vars->tex[1].path = vars->data.tex_parsing.texture[1];
+	vars->tex[2].path = vars->data.tex_parsing.texture[2];
+	vars->tex[3].path = vars->data.tex_parsing.texture[3];
+	init_textures(vars);
+	vars->keys.key_w = UP;
+	vars->keys.key_a = UP;
+	vars->keys.key_s = UP;
+	vars->keys.key_d = UP;
+	vars->keys.ctrl_left = UP;
+	vars->keys.shift_left = UP;
+	vars->keys.arrow_left = UP;
+	vars->keys.arrow_right = UP;
+	vars->player_x = 22;
+	vars->player_y = 12;
+	vars->player_speed = 0.05;
+	// vars->direction_x = -1;
+	// vars->direction_y = 0;
+	// vars->plane_x = 0;
+	// vars->plane_y = 0.66;
+	vars->direction_x = 0;
+	vars->direction_y = 1;
+	vars->plane_x = 0.66;
+	vars->plane_y = 0;
 }
 
-static void	init_mlx(t_vars *data)
+static void	init_mlx(t_vars *vars)
 {
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		handle_error(data, "mlx_init failed");
-	data->win = mlx_new_window(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
-	if (data->win == NULL)
-		handle_error(data, "mlx_new_window failed");
-	data->img.img = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	if (data->img.img == NULL)
-		handle_error(data, "mlx_new_image failed");
-	data->img.addr = mlx_get_data_addr(data->img.img, &data->img.bits_per_pixel,
-			&data->img.line_length, &data->img.endian);
-	if (data->img.addr == NULL)
-		handle_error(data, "mlx_get_vars_addr failed");
+	vars->mlx = mlx_init();
+	if (vars->mlx == NULL)
+		handle_error(vars, "mlx_init failed");
+	vars->win = mlx_new_window(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+	if (vars->win == NULL)
+		handle_error(vars, "mlx_new_window failed");
+	vars->img.img = mlx_new_image(vars->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (vars->img.img == NULL)
+		handle_error(vars, "mlx_new_image failed");
+	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
+			&vars->img.line_length, &vars->img.endian);
+	if (vars->img.addr == NULL)
+		handle_error(vars, "mlx_get_data_addr failed");
 }
 
-static void	init_textures(t_vars *data)
+static void	init_textures(t_vars *vars)
 {
 	int		i;
 	t_img	*img;
@@ -69,16 +70,16 @@ static void	init_textures(t_vars *data)
 	i = 0;
 	while (i < 4)
 	{
-		img = &data->tex[i];
-		img->img = mlx_xpm_file_to_image(data->mlx,
+		img = &vars->tex[i];
+		img->img = mlx_xpm_file_to_image(vars->mlx,
 				img->path, &img->width, &img->height);
 		if (img->img == NULL || img->width == 0 || img->height == 0)
-			handle_error(data, "mlx_xpm_file_to_image failed with texture");
+			handle_error(vars, "mlx_xpm_file_to_image failed with texture");
 		img->addr = mlx_get_data_addr(img->img,
 				&img->bits_per_pixel, &img->line_length, &img->endian);
 		if (img->addr == NULL || img->bits_per_pixel == 0
 			|| img->line_length == 0)
-			handle_error(data, "mlx_get_vars_addr failed with texture");
+			handle_error(vars, "mlx_get_data_addr failed with texture");
 		i++;
 	}
 }

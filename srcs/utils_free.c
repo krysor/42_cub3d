@@ -39,8 +39,7 @@ void	free_data(t_data *data)
 		close(data->fd);
 }
 
-void	free_all(t_vars *data)
+void	free_all(t_vars *vars)
 {
-	(void)data;
-	//free_alloc(&data->data);
+	free_data(&vars->data);
 }
