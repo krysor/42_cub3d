@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/15 16:16:00 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:05:42 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,9 @@ typedef struct s_vars
 	void	*mlx;
 	void	*win;
 	t_img	img;
+
+	int		color_ceiling;
+	int		color_floor;
 
 	t_keys	keys;
 	double	player_speed;
