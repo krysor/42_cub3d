@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/16 16:25:10 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:44:42 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ void ft_parsing(char **argv, t_data *data)
 {
 	check_extension(argv[1]);
 	init_struct(data);
+
+	int	i = 0;
+	while (i < 4)
+	{
+		printf("pnt: %s\n", data->tex_parsing.texture[i]);
+		//free(data->tex_parsing.texture[i]);
+		i++;
+	}
+	
+
 	browse_file(data, argv);
 	allocate_map(data, argv);
-
-	//possibly readd the space swap outside
-	//add filling insides after check
-
 	check_map(data->map, data);
 }
 
@@ -34,7 +40,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		error_msg("Incorrect amount of arguments\n");
 	ft_parsing(argv, &vars.data);
-
+	
 	return (69);
 	//add a function that
 	//processes puts all variables into the cub3d struct

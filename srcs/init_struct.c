@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 15:10:29 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 15:32:11 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:34:03 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	init_texture(t_tex_parsing tex)
 	int	i;
 
 	i = 0;
-	while (tex.texture[i])
-		tex.texture[i] = NULL;
+	while (i < 4)
+		tex.texture[i++] = NULL;
 }
 
 void	init_struct(t_data *data)

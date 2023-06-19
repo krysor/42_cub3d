@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/16 10:45:06 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:43:51 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,14 @@ void	free_data(t_data *data)
 {
 	int	i;
 
+	i = 0;
+	while (i < 4)
+	{
+		printf("pnt: %s\n", data->tex_parsing.texture[i]);
+		//free(data->tex_parsing.texture[i]);
+		i++;
+	}
 	free_arr(data->map);
-	i = -1;
-	while (data->tex_parsing.texture[++i])
-		free(data->tex_parsing.texture[i]);
 	if (data->fd > -1)
 		close(data->fd);
 }
