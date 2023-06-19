@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 12:57:05 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/16 16:47:52 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/19 12:19:16 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	check_map(char **map, t_data *data)
 	check_dup_char(map, data);
 	check_empty_line(map, data);
 	check_delim_line(map, data->len_map, data);
-	//FROM HERE
-	check_delim_char(map);
-	check_gaps(map, data->len_map);
+	check_delim_char(map, data);
+	check_gaps(map, data->len_map, data);
 }
