@@ -6,7 +6,7 @@
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 15:39:26 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:01:49 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,49 +25,6 @@ void	ft_parsing(char **argv, t_data *data, t_vars *vars)
 	equalize_length(data->map, data);
 	replace_position(data->map, vars);
 }
-
-// void	copy_map(char **map, int **world_map)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = -1;
-// 	while (map[++i])
-// 	{
-// 		j = -1;
-// 		while (map[i][++j])
-// 			world_map[j][i] = map[i][j] - '0';
-// 	}
-// }
-
-// int	**translate_and_rotate(char **map, t_vars *vars)
-// {
-// 	int	**world_map;
-// 	int	i;
-
-// 	vars->nb_rows = ft_strlen(map[0]);
-// 	world_map = calloc(vars->nb_rows + 1, sizeof(int *));
-// 	if (world_map == NULL)
-// 	{
-// 		free_all(vars);
-// 		error_msg("malloc fail inside translate_and_rotate\n");
-// 	}
-// 	i = -1;
-// 	while (map[++i])
-// 		;
-// 	vars->nb_columns = i;
-// 	i = -1;
-// 	while (++i < vars->nb_rows)
-// 	{
-// 		world_map[i] = calloc(vars->nb_columns, sizeof(int));
-// 		if (world_map[i] == NULL)
-// 			free_all(vars);
-// 		if (world_map[i] == NULL)
-// 			error_msg("malloc fail inside translate_and_rotate\n");
-// 	}
-// 	copy_map(map, world_map);
-// 	return (world_map);
-// }
 
 int	main(int argc, char *argv[])
 {
