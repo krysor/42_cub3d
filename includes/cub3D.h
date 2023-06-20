@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/19 15:05:42 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:31:03 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ typedef struct s_vars
 	t_keys	keys;
 	double	player_speed;
 
-	void	*world_map;
+	int		**world_map;
+	int		nb_columns;
+	int		nb_rows;
+
 	double	player_x;
 	double	player_y;
 	double	direction_x;
