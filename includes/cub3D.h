@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 15:41:06 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:56:56 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # include <limits.h>
 # include <math.h>
 # include <float.h>
-
-# include <stdlib.h>//delete later
-# include <stdio.h>//delete later
 
 //colors in hexadecimal
 # define WHITE			0xffffff
