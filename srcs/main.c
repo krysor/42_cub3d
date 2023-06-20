@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 14:28:13 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:50:47 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	replace_position(char **map, t_vars *vars)
 			if (map[i][j] == 'N' || map[i][j] == 'S'
 				|| map[i][j] == 'E' || map[i][j] == 'W')
 			{
-				vars->player_x = j;
-				vars->player_y = i;
+				vars->player_x = j + 0.5;
+				vars->player_y = i + 0.5;
 				save_direction(map[i][j], vars);
 				map[i][j] = '0';
 			}
