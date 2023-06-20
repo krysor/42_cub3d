@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/14 11:04:14 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:04:47 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	raycasting(t_vars *data)
 	while (++x < WINDOW_WIDTH)
 	{
 		init_raycast(&raycast, data, x);
-		dda(&raycast, *(int ***)(data->world_map));
+		dda(&raycast, data->world_map);
 		draw_vertical_stripe(&raycast, data, x);
 	}
 }

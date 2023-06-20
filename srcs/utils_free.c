@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/19 14:16:50 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 12:46:59 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,23 @@ void	free_data(t_data *data)
 		close(data->fd);
 }
 
+void	free_world_map(int **world_map)
+{
+	int	i;
+
+	if (world_map == NULL)
+		return ;
+	i = -1;
+	while (world_map[++i] != NULL)
+	{
+		//printf("world_map[%d]: %p\n", i, world_map[i]);
+		free(world_map[i]);	
+	}
+	free(world_map);
+}
+
 void	free_all(t_vars *vars)
 {
 	free_data(&vars->data);
+	free_world_map(vars->world_map);
 }

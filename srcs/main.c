@@ -6,22 +6,13 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 11:33:23 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:46:39 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 static void	init_hooks(t_vars *data);
-
-void	ft_parsing(char **argv, t_data *data)
-{
-	check_extension(argv[1]);
-	init_struct(data);
-	browse_file(data, argv);
-	allocate_map(data, argv);
-	check_map(data->map, data);
-}
 
 void	spaces_to_ones(char **map)
 {
@@ -54,7 +45,7 @@ void	save_direction(char direction, t_vars *vars)
 		rotate(vars, -M_PI / 2);
 }
 
-void	relace_position(char **map, t_vars *vars)
+void	replace_position(char **map, t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -109,55 +100,64 @@ void	equalize_length(char **map, t_data *data)
 	}
 }
 
+void	ft_parsing(char **argv, t_data *data, t_vars *vars)
+{
+	check_extension(argv[1]);
+	init_struct(data);
+	browse_file(data, argv);
+	allocate_map(data, argv);
+	check_map(data->map, data);
+	spaces_to_ones(data->map);
+	equalize_length(data->map, data);
+	replace_position(data->map, vars);
+}
+
+int	**translate_and_rotate(char **map, t_vars *vars)
+{
+	int	**world_map;
+	int	i;
+
+	vars->nb_columns = ft_strlen(map[0]);
+	world_map = calloc(vars->nb_columns + 1, sizeof(int *));
+	if (world_map == NULL)
+	{
+		free_all(vars);
+		error_msg("malloc fail inside translate_and_rotate\n");
+	}
+	i = -1;
+	while (map[++i])
+		;
+	vars->nb_rows = i;
+	world_map[i] = NULL;
+	i = -1;
+	while (++i < vars->nb_columns)
+	{
+		world_map[i] = calloc(vars->nb_rows, sizeof(int));
+		if (world_map[i] == NULL)
+		{
+			free_all(vars);
+			error_msg("malloc fail inside translate_and_rotate\n");
+		}
+	}
+	return (world_map);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
 
 	if (argc != 2)
 		error_msg("Incorrect amount of arguments\n");
-	ft_parsing(argv, &vars.data);
-
-	
-	spaces_to_ones(vars.data.map);
-	equalize_length(vars.data.map, &vars.data);
-	relace_position(vars.data.map, &vars);
-
+	ft_parsing(argv, &vars.data, &vars);
 
 	int	i = -1;
 	while (vars.data.map[++i])
 		printf("map[%2d]: %s\n", i, vars.data.map[i]);
 
-	//return (0);
-	
+	translate_and_rotate(vars.data.map, &vars);
 
-	int worldMap[mapWidth][mapHeight] =
-	{
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-	};
-	vars.world_map = &worldMap;
+	free_all(&vars);
+	return (0);
 
 	init_vars(&vars);
 	init_hooks(&vars);
