@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 13:00:35 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/19 14:08:10 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 10:53:58 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	check_gaps(char **map, int len_map, t_data *data)
 	{
 		while (map[i][++j])
 		{
-			if (map[i][j] == '0' && check_gaps_conditions(map, len_map, i, j))
+			if ((map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'E' || map[i][j] == 'W')
+				&& check_gaps_conditions(map, len_map, i, j))
 			{
 				free_data(data);
 				error_msg("Map error: player can see undefined texture\n");

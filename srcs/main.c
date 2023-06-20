@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/19 16:47:17 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:43:53 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,32 @@ void	spaces_to_ones(char **map)
 	}
 }
 
+// void	direction_to_one(char **map, )
+// {
+// 	int		i;
+// 	char	*dir;
+
+// 	i = -1;
+// 	while (map[++i])
+// 	{
+// 		if (ft_memchr(map[i], 'N', ) )
+// 	}
+	
+
+// 			{
+// 				//save direction
+// 				map[i][j] = 0;
+// 			}
+// }
+
 void	equalize_length(char **map, t_data *data)
 {
 	size_t	len_max;
 	int		i;
 	char	*row_new;
 
+	len_max = 0;
 	i = -1;
-	len_max = -1;
 	while (map[++i])
 	{
 		if (ft_strlen(map[i]) > len_max)
@@ -60,18 +78,17 @@ void	equalize_length(char **map, t_data *data)
 	{
 		if (ft_strlen(map[i]) == len_max)
 			continue ;
-		row_new = malloc(sizeof(char) * (len_max + 1));//add malloc protection
+		row_new = calloc(len_max + 1, sizeof(char));
 		if (row_new == NULL)
 		{
 			free_data(data);
-			error_msg("Malloc fail insisde equalize_length\n");
+			error_msg("malloc fail inside equalize_length\n");
 		}
 		ft_memset(row_new, '1', len_max);
-		row_new[len_max] = '\0';
 		ft_memcpy(row_new, map[i], ft_strlen(map[i]));
 		free(map[i]);
 		map[i] = row_new;
-	}	
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -85,7 +102,12 @@ int	main(int argc, char *argv[])
 	
 	spaces_to_ones(vars.data.map);
 	equalize_length(vars.data.map, &vars.data);
-	
+
+	// int	i = -1;
+	// while (vars.data.map[++i])
+	// 	printf("map[%2d]: %s\n", i, vars.data.map[i]);
+
+	return (0);
 	//add a function that
 	//processes puts all variables into the cub3d struct
 	//possibly reallocates the map
