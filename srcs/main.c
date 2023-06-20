@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 12:57:26 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:28:13 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,27 @@ void	ft_parsing(char **argv, t_data *data, t_vars *vars)
 	replace_position(data->map, vars);
 }
 
+void	copy_map(char **map, int **world_map)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+			world_map[j][i] = map[i][j] - '0';
+	}
+}
+
 int	**translate_and_rotate(char **map, t_vars *vars)
 {
 	int	**world_map;
 	int	i;
 
-	vars->nb_columns = ft_strlen(map[0]);
-	world_map = malloc((vars->nb_columns + 1) * sizeof(int *));
+	vars->nb_rows = ft_strlen(map[0]);
+	world_map = calloc(vars->nb_rows + 1, sizeof(int *));
 	if (world_map == NULL)
 	{
 		free_all(vars);
@@ -127,18 +141,29 @@ int	**translate_and_rotate(char **map, t_vars *vars)
 	i = -1;
 	while (map[++i])
 		;
-	vars->nb_rows = i;
-	world_map[i] = NULL;
+	vars->nb_columns = i;
 	i = -1;
-	while (++i < vars->nb_columns)
+	while (++i < vars->nb_rows)
 	{
-		world_map[i] = malloc(vars->nb_rows * sizeof(int));
+		world_map[i] = calloc(vars->nb_columns, sizeof(int));
 		if (world_map[i] == NULL)
 		{
 			free_all(vars);
 			error_msg("malloc fail inside translate_and_rotate\n");
 		}
 	}
+	copy_map(map, world_map);
+
+	// i = -1;
+	// while (world_map[++i])
+	// {
+	// 	printf("world_map[%2d]: ", i);
+	// 	int	j = -1;
+	// 	while (++j < vars->nb_columns)
+	// 		printf("%d", world_map[i][j]);
+	// 	printf("\n");
+	// }
+
 	return (world_map);
 }
 
@@ -154,10 +179,10 @@ int	main(int argc, char *argv[])
 	while (vars.data.map[++i])
 		printf("map[%2d]: %s\n", i, vars.data.map[i]);
 
-	translate_and_rotate(vars.data.map, &vars);
+	vars.world_map = translate_and_rotate(vars.data.map, &vars);
 
-	free_all(&vars);
-	return (0);
+	// free_all(&vars);
+	// return (0);
 
 	init_vars(&vars);
 	init_hooks(&vars);
