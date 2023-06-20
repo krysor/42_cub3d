@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_vars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:11:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 11:28:30 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:56:52 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ void	init_vars(t_vars *vars)
 	vars->keys.shift_left = UP;
 	vars->keys.arrow_left = UP;
 	vars->keys.arrow_right = UP;
-
-	//remove after map works
-	// vars->player_x = 1;
-	// vars->player_y = 10;
-	
 	vars->player_speed = 0.05;
 	vars->direction_x = 0;
 	vars->direction_y = 1;

@@ -6,7 +6,7 @@
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:48:02 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/19 14:15:37 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 15:00:11 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,8 @@ int	line_is_empty(char *ret)
 	return (0);
 }
 
-/*
-int	line_is_empty(char *ret)
-{
-	int	i;
-
-	i = 0;
-	while (ret[i] && (ret[i] == 9 || (ret[i] >= 11 && ret[i] <= 13)
-			|| ret[i] == ' '))
-		i++;
-	if (ret[i] == '\0')
-		return (1);
-	return (0);
-}*/
-
 int	is_space(char c)
 {
-	// if (!c)
-	// 	error_msg("Map error\n");
 	if (c == 9 || (c >= 11 && c <= 13) || c == ' ')
 		return (1);
 	return (0);

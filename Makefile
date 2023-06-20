@@ -16,6 +16,7 @@ CFILES	= 	\
 			browse_file.c\
 			init_struct.c\
 			map_utils.c\
+			map_preparation.c\
 			utils.c
 			
 SRCS 	= $(addprefix srcs/, ${CFILES})
@@ -27,7 +28,7 @@ NAME	= cub3D
 CC		= cc
 RM		= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address #-Os -O2 -O3 
+CFLAGS	=  -Wall -Wextra -Werror -fsanitize=address #-Os -O2 -O3 
 
 MLX		= -framework OpenGL -framework AppKit
 

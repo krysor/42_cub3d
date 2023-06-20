@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 12:42:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 12:31:03 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:41:06 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@
 # define SPEED_WALK		0.01
 # define SPEED_NORMAL	0.05
 # define SPEED_SPRINT	0.10
-
-//lode test//delete after
-# define mapWidth 24
-# define mapHeight 24
 
 typedef struct s_img
 {
@@ -173,5 +169,13 @@ void		my_pixel_put(t_img *img, int x, int y, int color);
 void		handle_error(t_vars *data, char *error_message);
 void		free_arr(char **arr);
 void		free_all(t_vars *data);
+
+void		spaces_to_ones(char **map);
+void		save_direction(char direction, t_vars *vars);
+void		replace_position(char **map, t_vars *vars);
+void		equalize_length(char **map, t_data *data);
+void		equalize_line(char **map, t_data *data, int len_max, int i);
+void		copy_map(char **map, int **world_map);
+int			**translate_and_rotate(char **map, t_vars *vars);
 
 #endif

@@ -6,99 +6,13 @@
 /*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 14:50:47 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 15:39:26 by dsoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
 static void	init_hooks(t_vars *data);
-
-void	spaces_to_ones(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i])
-	{
-		j = 0;
-		while (map[i][j])
-		{
-			if (map[i][j] == ' ')
-				map[i][j] = '1';
-			j++;
-		}
-		i++;
-	}
-}
-
-void	save_direction(char direction, t_vars *vars)
-{
-	if (direction == 'N')
-		return ;
-	else if (direction == 'S')
-		rotate(vars, M_PI);
-	else if (direction == 'W')
-		rotate(vars, M_PI / 2);
-	else if (direction == 'E')
-		rotate(vars, -M_PI / 2);
-}
-
-void	replace_position(char **map, t_vars *vars)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = -1;
-	while (map[++i])
-	{
-		while (map[i][++j])
-		{
-			if (map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'E' || map[i][j] == 'W')
-			{
-				vars->player_x = j + 0.5;
-				vars->player_y = i + 0.5;
-				save_direction(map[i][j], vars);
-				map[i][j] = '0';
-			}
-		}
-		j = -1;
-	}
-}
-
-void	equalize_length(char **map, t_data *data)
-{
-	size_t	len_max;
-	int		i;
-	char	*row_new;
-
-	len_max = 0;
-	i = -1;
-	while (map[++i])
-	{
-		if (ft_strlen(map[i]) > len_max)
-			len_max = ft_strlen(map[i]);
-	}
-	i = -1;
-	while (map[++i])
-	{
-		if (ft_strlen(map[i]) == len_max)
-			continue ;
-		row_new = calloc(len_max + 1, sizeof(char));
-		if (row_new == NULL)
-		{
-			free_data(data);
-			error_msg("malloc fail inside equalize_length\n");
-		}
-		ft_memset(row_new, '1', len_max);
-		ft_memcpy(row_new, map[i], ft_strlen(map[i]));
-		free(map[i]);
-		map[i] = row_new;
-	}
-}
 
 void	ft_parsing(char **argv, t_data *data, t_vars *vars)
 {
@@ -112,60 +26,48 @@ void	ft_parsing(char **argv, t_data *data, t_vars *vars)
 	replace_position(data->map, vars);
 }
 
-void	copy_map(char **map, int **world_map)
-{
-	int	i;
-	int	j;
+// void	copy_map(char **map, int **world_map)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = -1;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-			world_map[j][i] = map[i][j] - '0';
-	}
-}
+// 	i = -1;
+// 	while (map[++i])
+// 	{
+// 		j = -1;
+// 		while (map[i][++j])
+// 			world_map[j][i] = map[i][j] - '0';
+// 	}
+// }
 
-int	**translate_and_rotate(char **map, t_vars *vars)
-{
-	int	**world_map;
-	int	i;
+// int	**translate_and_rotate(char **map, t_vars *vars)
+// {
+// 	int	**world_map;
+// 	int	i;
 
-	vars->nb_rows = ft_strlen(map[0]);
-	world_map = calloc(vars->nb_rows + 1, sizeof(int *));
-	if (world_map == NULL)
-	{
-		free_all(vars);
-		error_msg("malloc fail inside translate_and_rotate\n");
-	}
-	i = -1;
-	while (map[++i])
-		;
-	vars->nb_columns = i;
-	i = -1;
-	while (++i < vars->nb_rows)
-	{
-		world_map[i] = calloc(vars->nb_columns, sizeof(int));
-		if (world_map[i] == NULL)
-		{
-			free_all(vars);
-			error_msg("malloc fail inside translate_and_rotate\n");
-		}
-	}
-	copy_map(map, world_map);
-
-	// i = -1;
-	// while (world_map[++i])
-	// {
-	// 	printf("world_map[%2d]: ", i);
-	// 	int	j = -1;
-	// 	while (++j < vars->nb_columns)
-	// 		printf("%d", world_map[i][j]);
-	// 	printf("\n");
-	// }
-
-	return (world_map);
-}
+// 	vars->nb_rows = ft_strlen(map[0]);
+// 	world_map = calloc(vars->nb_rows + 1, sizeof(int *));
+// 	if (world_map == NULL)
+// 	{
+// 		free_all(vars);
+// 		error_msg("malloc fail inside translate_and_rotate\n");
+// 	}
+// 	i = -1;
+// 	while (map[++i])
+// 		;
+// 	vars->nb_columns = i;
+// 	i = -1;
+// 	while (++i < vars->nb_rows)
+// 	{
+// 		world_map[i] = calloc(vars->nb_columns, sizeof(int));
+// 		if (world_map[i] == NULL)
+// 			free_all(vars);
+// 		if (world_map[i] == NULL)
+// 			error_msg("malloc fail inside translate_and_rotate\n");
+// 	}
+// 	copy_map(map, world_map);
+// 	return (world_map);
+// }
 
 int	main(int argc, char *argv[])
 {
@@ -174,16 +76,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		error_msg("Incorrect amount of arguments\n");
 	ft_parsing(argv, &vars.data, &vars);
-
-	int	i = -1;
-	while (vars.data.map[++i])
-		printf("map[%2d]: %s\n", i, vars.data.map[i]);
-
 	vars.world_map = translate_and_rotate(vars.data.map, &vars);
-
-	// free_all(&vars);
-	// return (0);
-
 	init_vars(&vars);
 	init_hooks(&vars);
 	mlx_loop(vars.mlx);
