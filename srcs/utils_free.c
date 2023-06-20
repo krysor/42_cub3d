@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 12:46:59 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:55:23 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	free_world_map(int **world_map)
 	i = -1;
 	while (world_map[++i] != NULL)
 	{
-		//printf("world_map[%d]: %p\n", i, world_map[i]);
-		free(world_map[i]);	
+		printf("world_map[%d]: %p\n", i, world_map[i]);
+		free(world_map[i]);
 	}
 	free(world_map);
 }

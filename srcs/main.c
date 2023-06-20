@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 12:46:39 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 12:57:26 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	**translate_and_rotate(char **map, t_vars *vars)
 	int	i;
 
 	vars->nb_columns = ft_strlen(map[0]);
-	world_map = calloc(vars->nb_columns + 1, sizeof(int *));
+	world_map = malloc((vars->nb_columns + 1) * sizeof(int *));
 	if (world_map == NULL)
 	{
 		free_all(vars);
@@ -132,7 +132,7 @@ int	**translate_and_rotate(char **map, t_vars *vars)
 	i = -1;
 	while (++i < vars->nb_columns)
 	{
-		world_map[i] = calloc(vars->nb_rows, sizeof(int));
+		world_map[i] = malloc(vars->nb_rows * sizeof(int));
 		if (world_map[i] == NULL)
 		{
 			free_all(vars);
