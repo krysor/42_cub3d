@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:11:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/19 15:59:22 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:28:30 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ void	init_vars(t_vars *vars)
 	vars->keys.shift_left = UP;
 	vars->keys.arrow_left = UP;
 	vars->keys.arrow_right = UP;
-	vars->player_x = 22;
-	vars->player_y = 12;
+
+	//remove after map works
+	// vars->player_x = 1;
+	// vars->player_y = 10;
+	
 	vars->player_speed = 0.05;
-	// vars->direction_x = -1;
-	// vars->direction_y = 0;
-	// vars->plane_x = 0;
-	// vars->plane_y = 0.66;
 	vars->direction_x = 0;
 	vars->direction_y = 1;
 	vars->plane_x = 0.66;

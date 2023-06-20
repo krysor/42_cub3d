@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 10:43:53 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:33:23 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,41 @@ void	spaces_to_ones(char **map)
 	}
 }
 
-// void	direction_to_one(char **map, )
-// {
-// 	int		i;
-// 	char	*dir;
+void	save_direction(char direction, t_vars *vars)
+{
+	if (direction == 'N')
+		return ;
+	else if (direction == 'S')
+		rotate(vars, M_PI);
+	else if (direction == 'W')
+		rotate(vars, M_PI / 2);
+	else if (direction == 'E')
+		rotate(vars, -M_PI / 2);
+}
 
-// 	i = -1;
-// 	while (map[++i])
-// 	{
-// 		if (ft_memchr(map[i], 'N', ) )
-// 	}
-	
+void	relace_position(char **map, t_vars *vars)
+{
+	int	i;
+	int	j;
 
-// 			{
-// 				//save direction
-// 				map[i][j] = 0;
-// 			}
-// }
+	i = -1;
+	j = -1;
+	while (map[++i])
+	{
+		while (map[i][++j])
+		{
+			if (map[i][j] == 'N' || map[i][j] == 'S'
+				|| map[i][j] == 'E' || map[i][j] == 'W')
+			{
+				vars->player_x = j;
+				vars->player_y = i;
+				save_direction(map[i][j], vars);
+				map[i][j] = '0';
+			}
+		}
+		j = -1;
+	}
+}
 
 void	equalize_length(char **map, t_data *data)
 {
@@ -102,16 +120,15 @@ int	main(int argc, char *argv[])
 	
 	spaces_to_ones(vars.data.map);
 	equalize_length(vars.data.map, &vars.data);
+	relace_position(vars.data.map, &vars);
 
-	// int	i = -1;
-	// while (vars.data.map[++i])
-	// 	printf("map[%2d]: %s\n", i, vars.data.map[i]);
 
-	return (0);
-	//add a function that
-	//processes puts all variables into the cub3d struct
-	//possibly reallocates the map
-	//frees the parsing struct
+	int	i = -1;
+	while (vars.data.map[++i])
+		printf("map[%2d]: %s\n", i, vars.data.map[i]);
+
+	//return (0);
+	
 
 	int worldMap[mapWidth][mapHeight] =
 	{
