@@ -6,7 +6,7 @@
 /*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 16:17:26 by kkaczoro         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:02:10 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char *argv[])
 void	handle_error(t_vars *data, char *error_message)
 {
 	if (error_message != NULL)
-		printf("%s\n", error_message);
+		printf("Error\n%s\n", error_message);
 	free_all(data);
 	exit(1);
 }
