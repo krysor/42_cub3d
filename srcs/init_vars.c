@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_vars.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 10:11:10 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 14:56:52 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:20:32 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ void	init_vars(t_vars *vars)
 	vars->keys.arrow_left = UP;
 	vars->keys.arrow_right = UP;
 	vars->player_speed = 0.05;
-	vars->direction_x = 0;
-	vars->direction_y = 1;
-	vars->plane_x = 0.66;
-	vars->plane_y = 0;
 }
 
 static void	init_mlx(t_vars *vars)

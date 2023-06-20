@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:52:31 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 16:01:49 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:17:26 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-static void	init_hooks(t_vars *data);
 
 void	ft_parsing(char **argv, t_data *data, t_vars *vars)
 {
@@ -26,6 +24,16 @@ void	ft_parsing(char **argv, t_data *data, t_vars *vars)
 	replace_position(data->map, vars);
 }
 
+void	init_hooks(t_vars *data)
+{
+	mlx_mouse_hide(data->mlx, data->win);
+	mlx_hook(data->win, ON_DESTROY, NO_EVENT_MASK, red_cross, data);
+	mlx_hook(data->win, ON_KEYDOWN, NO_EVENT_MASK, key_press, data);
+	mlx_hook(data->win, ON_KEYUP, NO_EVENT_MASK, key_release, data);
+	mlx_hook(data->win, ON_MOUSEMOVE, NO_EVENT_MASK, mouse_hook, data);
+	mlx_loop_hook(data->mlx, render_frame, data);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_vars	vars;
@@ -37,16 +45,6 @@ int	main(int argc, char *argv[])
 	init_vars(&vars);
 	init_hooks(&vars);
 	mlx_loop(vars.mlx);
-}
-
-static void	init_hooks(t_vars *data)
-{
-	mlx_mouse_hide(data->mlx, data->win);
-	mlx_hook(data->win, ON_DESTROY, NO_EVENT_MASK, red_cross, data);
-	mlx_hook(data->win, ON_KEYDOWN, NO_EVENT_MASK, key_press, data);
-	mlx_hook(data->win, ON_KEYUP, NO_EVENT_MASK, key_release, data);
-	mlx_hook(data->win, ON_MOUSEMOVE, NO_EVENT_MASK, mouse_hook, data);
-	mlx_loop_hook(data->mlx, render_frame, data);
 }
 
 void	handle_error(t_vars *data, char *error_message)

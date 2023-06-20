@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 12:19:06 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 14:55:58 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:45:24 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	mouse_hook(int x, int y, t_vars *data)
 {
 	static int		x_mid = WINDOW_WIDTH / 2;
 	static int		y_mid = WINDOW_HEIGHT / 2;
-	static double	angle = M_PI / 90;
+	static double	angle = M_PI / 90 * 2;
 
 	(void)y;
 	if (x > x_mid)

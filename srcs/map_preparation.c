@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_preparation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 15:05:10 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/20 16:09:57 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/20 16:20:47 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,18 @@ void	spaces_to_ones(char **map)
 
 void	save_direction(char direction, t_vars *vars)
 {
-	printf("direction_x: %f\n", vars->direction_x);
+	vars->direction_x = 0;
+	vars->direction_y = 1;
+	vars->plane_x = 0.66;
+	vars->plane_y = 0;
 	if (direction == 'N')
 		return ;
 	else if (direction == 'S')
 		rotate(vars, M_PI);
 	else if (direction == 'W')
-	{
-		printf("wtf\n");
 		rotate(vars, M_PI / 2);
-	}
 	else if (direction == 'E')
 		rotate(vars, -M_PI / 2);
-	printf("direction_x: %f\n", vars->direction_x);
 }
 
 void	replace_position(char **map, t_vars *vars)
