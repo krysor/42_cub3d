@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 10:16:18 by kkaczoro          #+#    #+#             */
-/*   Updated: 2023/06/20 15:02:54 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/21 08:47:05 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ static t_img	*get_texture(t_raycast *rc, t_vars *data)
 		return (&data->tex[0]);
 	if (rc->side == 1 && rc->ray_dir_y < 0)
 		return (&data->tex[1]);
-	if (rc->side == 0 && rc->ray_dir_x > 0)
-		return (&data->tex[2]);
 	if (rc->side == 0 && rc->ray_dir_x < 0)
+		return (&data->tex[2]);
+	if (rc->side == 0 && rc->ray_dir_x > 0)
 		return (&data->tex[3]);
 	return (NULL);
 }
