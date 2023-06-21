@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsoroko <dsoroko@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kkaczoro <kkaczoro@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 11:54:22 by dsoroko           #+#    #+#             */
-/*   Updated: 2023/06/20 15:41:32 by dsoroko          ###   ########.fr       */
+/*   Updated: 2023/06/21 08:55:30 by kkaczoro         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,9 @@ int	**translate_and_rotate(char **map, t_vars *vars)
 	vars->nb_rows = ft_strlen(map[0]);
 	world_map = calloc(vars->nb_rows + 1, sizeof(int *));
 	if (world_map == NULL)
-	{
 		free_all(vars);
+	if (world_map == NULL)
 		error_msg("malloc fail inside translate_and_rotate\n");
-	}
 	i = -1;
 	while (map[++i])
 		;
@@ -66,9 +65,10 @@ int	**translate_and_rotate(char **map, t_vars *vars)
 	{
 		world_map[i] = calloc(vars->nb_columns, sizeof(int));
 		if (world_map[i] == NULL)
+		{
 			free_all(vars);
-		if (world_map[i] == NULL)
 			error_msg("malloc fail inside translate_and_rotate\n");
+		}
 	}
 	copy_map(map, world_map);
 	return (world_map);
